@@ -1,7 +1,7 @@
-import React, { cloneElement, forwardRef } from 'react';
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import React, { cloneElement, forwardRef } from 'react';
 
 const InternalLink = ({ children, ...props }) => {
   const router = useRouter();
@@ -12,7 +12,7 @@ const InternalLink = ({ children, ...props }) => {
   }
 
   return (
-    <NextLink passHref {...props}>
+    <NextLink href={''} passHref {...props}>
       {typeof children === 'function' ? children(isActive) : children}
     </NextLink>
   );

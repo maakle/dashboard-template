@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, Button, Stack } from '@chakra-ui/react';
+import { Button, Flex, Heading } from '@chakra-ui/react';
 import { getLayout } from '../layouts/default';
 import { MY_APP } from '../utils/constants';
 

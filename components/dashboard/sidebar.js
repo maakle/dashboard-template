@@ -1,28 +1,15 @@
+import { Box, Flex, Text, useColorModeValue, VStack } from '@chakra-ui/react';
 import {
-  Box,
-  Flex,
-  Text,
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-  VStack,
-  useColorModeValue
-} from '@chakra-ui/react';
-import { NavLink } from './nav-link';
-import {
-  Home,
-  UserGroup,
-  Folder,
   Calendar,
-  Inbox,
   ChartSquareBar,
+  Folder,
+  Home,
+  Inbox,
   LogoMark,
   LogoOnDark,
-  Template,
-  ClipboardList
+  UserGroup
 } from '../icons';
+import { NavLink } from './nav-link';
 
 const SidebarLink = ({ href, children, icon }) => (
   <NavLink href={href}>

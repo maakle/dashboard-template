@@ -1,6 +1,6 @@
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import Header from './header';
 import Sidebar from './sidebar';
-import { Flex, useColorModeValue, Box } from '@chakra-ui/react';
 
 export default function Dashboard({ children }) {
   const bgColor = useColorModeValue('white', 'gray.800');

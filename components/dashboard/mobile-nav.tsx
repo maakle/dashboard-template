@@ -1,14 +1,14 @@
-import React, { useRef } from 'react';
 import {
-  IconButton,
   Drawer,
   DrawerBody,
   DrawerContent,
   DrawerOverlay,
+  IconButton,
   useDisclosure
 } from '@chakra-ui/react';
-import Sidebar from './sidebar';
+import React from 'react';
 import { Menu } from '../icons';
+import Sidebar from './sidebar';
 
 export default function MobileNav() {
   const { isOpen, onToggle, onClose } = useDisclosure();
