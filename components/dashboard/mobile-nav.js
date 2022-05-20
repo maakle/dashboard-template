@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 import {
   IconButton,
   Drawer,
@@ -6,7 +6,7 @@ import {
   DrawerContent,
   DrawerOverlay,
   useDisclosure
-} from '@chakra-ui/core';
+} from '@chakra-ui/react';
 import Sidebar from './sidebar';
 import { Menu } from '../icons';
 
