@@ -67,7 +67,7 @@ function SidebarContainer(props) {
       position="fixed"
       top={0}
       w={64}
-      insexX={0}
+      insetX={0}
       h="full"
       {...props}
     />
