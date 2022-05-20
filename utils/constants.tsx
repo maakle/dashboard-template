@@ -1,4 +1,4 @@
-import { Github, Twitter, Mail } from '../components/icons';
+import { Github, Mail, Twitter } from '../components/icons';
 
 export const MY_APP = 'Dashboard';
 export const MY_NAME = 'Faisal Karim';
