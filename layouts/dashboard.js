@@ -1,4 +1,4 @@
-import { Dashboard } from '@/components/dashboard';
+import { Dashboard } from '../components/dashboard';
 
 const DashboardLayout = ({ children }) => <Dashboard>{children}</Dashboard>;
 

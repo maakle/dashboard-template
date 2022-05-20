@@ -1,8 +1,8 @@
 import React from 'react';
 import { ChakraProvider, CSSReset, ThemeProvider } from '@chakra-ui/react';
-import Nprogress from '@/components/nprogress';
-import theme from '@/components/design-system';
-import DefaultLayout from '@/layouts/default';
+import Nprogress from '../components/nprogress';
+import theme from '../components/design-system';
+import DefaultLayout from '../layouts/default';
 
 const App = ({ Component, pageProps }) => {
   const getLayout =

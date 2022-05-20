@@ -1,4 +1,4 @@
-import { getLayout } from '@/layouts/dashboard';
+import { getLayout } from '../../layouts/dashboard';
 
 const DashboardProjects = () => <div>Projects</div>;
 

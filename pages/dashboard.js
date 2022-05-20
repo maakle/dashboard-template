@@ -1,4 +1,4 @@
-import { getLayout } from '@/layouts/dashboard';
+import { getLayout } from '../layouts/dashboard';
 
 const DashboardIndex = () => <div>this is dashboard page</div>;
 

@@ -2,7 +2,7 @@ import NextLink from 'next/link';
 import { Button, Flex, useColorModeValue } from '@chakra-ui/react';
 import ThemeToggle from '../theme-toggle';
 import MobileNav from './mobile-nav';
-import { MY_APP } from '@/utils/constants';
+import { MY_APP } from '../../utils/constants';
 
 export default function Header() {
   const bgColor = useColorModeValue('white', 'gray.800');
