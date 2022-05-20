@@ -1,6 +1,5 @@
+import { Flex, useColorModeValue } from '@chakra-ui/react';
 import Header from './header';
-import Footer from './footer';
-import { useColorModeValue, Flex } from '@chakra-ui/react';
 
 export default function Page({ children }) {
   const bgColor = useColorModeValue('white', 'gray.900');
@@ -31,7 +30,6 @@ export default function Page({ children }) {
         >
           <Flex direction="column" w="full" h="full" maxW="5xl">
             {children}
-            <Footer />
           </Flex>
         </Flex>
       </Flex>
