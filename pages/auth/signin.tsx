@@ -23,8 +23,6 @@ interface SignInProps {
 
 export default function SignIn(props: SignInProps) {
   const getProviderIcon = (providerName: string): JSX.Element => {
-    console.log(providerName);
-    
     if (providerName === 'github') {
       return <BsGithub />;
     } else {
