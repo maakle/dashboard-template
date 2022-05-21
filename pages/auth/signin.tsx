@@ -15,14 +15,23 @@ import {
   getProviders,
   signIn
 } from 'next-auth/react';
-import { BsGithub } from 'react-icons/bs';
-
+import { BsGithub, BsGoogle } from 'react-icons/bs';
 interface SignInProps {
   csrfToken: string;
   providers: ClientSafeProvider[];
 }
 
 export default function SignIn(props: SignInProps) {
+  const getProviderIcon = (providerName: string): JSX.Element => {
+    console.log(providerName);
+    
+    if (providerName === 'github') {
+      return <BsGithub />;
+    } else {
+      return <BsGoogle />;
+    }
+  };
+
   return (
     <Flex align={'center'} justify={'center'}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
@@ -44,7 +53,7 @@ export default function SignIn(props: SignInProps) {
                 <div key={provider.name} style={{ marginBottom: 0 }}>
                   <Center>
                     <Button
-                      leftIcon={<BsGithub />}
+                      leftIcon={getProviderIcon(provider.id)}
                       colorScheme="cool-gray"
                       variant="solid"
                       onClick={() => signIn(provider.id)}
