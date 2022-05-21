@@ -2,7 +2,7 @@ import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
 import Header from './header';
 import Sidebar from './sidebar';
 
-export default function Dashboard({ children }) {
+const Dashboard = ({ children }) => {
   const bgColor = useColorModeValue('white', 'gray.800');
 
   return (
@@ -26,4 +26,6 @@ export default function Dashboard({ children }) {
       </Flex>
     </>
   );
-}
+};
+
+export default Dashboard;

@@ -9,5 +9,6 @@ const DashboardIndex = () => {
 };
 
 DashboardIndex.getLayout = getLayout;
+DashboardIndex.auth = true;
 
 export default DashboardIndex;
