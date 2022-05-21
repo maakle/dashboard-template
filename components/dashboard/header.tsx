@@ -36,7 +36,7 @@ export default function Header() {
               <Button
                 colorScheme="blue"
                 marginLeft={10}
-                size="xs"
+                size="sm"
                 onClick={() =>
                   signOut({
                     callbackUrl: `${window.location.origin}`

@@ -1,6 +1,7 @@
 import { ChakraProvider, CSSReset } from '@chakra-ui/react';
-import { SessionProvider, useSession, signIn } from 'next-auth/react';
+import { SessionProvider } from 'next-auth/react';
 import React from 'react';
+import AuthGuard from '../components/auth/AuthGuard';
 import theme from '../components/design-system';
 import Nprogress from '../components/nprogress';
 import DefaultLayout from '../layouts/default';
@@ -16,9 +17,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
         <Nprogress />
 
         {Component.auth ? (
-          <Auth>
-            <Component {...pageProps} />
-          </Auth>
+          <AuthGuard>{getLayout(<Component {...pageProps} />)}</AuthGuard>
         ) : (
           <>{getLayout(<Component {...pageProps} />)}</>
         )}
@@ -26,22 +25,5 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
     </ChakraProvider>
   );
 };
-
-function Auth({ children }) {
-  const { data: session, status } = useSession();
-  const isUser = !!session?.user;
-  React.useEffect(() => {
-    if (status === 'loading') return;
-    if (!isUser) signIn();
-  }, [isUser, status]);
-
-  if (isUser) {
-    return children;
-  }
-
-  // Session is being fetched, or no user.
-  // If no user, useEffect() will redirect.
-  return <div>Loading...</div>;
-}
 
 export default App;
