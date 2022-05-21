@@ -1,4 +1,5 @@
-import { Button, Flex, useColorModeValue } from '@chakra-ui/react';
+import { Button, Center, Flex, useColorModeValue } from '@chakra-ui/react';
+import { signOut } from 'next-auth/react';
 import NextLink from 'next/link';
 import { MY_APP } from '../../utils/constants';
 import ThemeToggle from '../theme-toggle';
@@ -31,6 +32,21 @@ export default function Header() {
           </Flex>
           <Flex>
             <ThemeToggle mr={`-${3}`} />
+            <Center>
+              <Button
+                colorScheme="blue"
+                marginLeft={10}
+                size="xs"
+                onClick={() =>
+                  signOut({
+                    callbackUrl: `${window.location.origin}`
+                  })
+                }
+              >
+                Signout
+              </Button>
+            </Center>
+
             <MobileNav />
           </Flex>
         </Flex>

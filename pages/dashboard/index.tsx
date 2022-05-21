@@ -1,8 +1,8 @@
 import { useSession } from 'next-auth/react';
-import { getLayout } from '../layouts/dashboard';
+import { getLayout } from '../../layouts/dashboard';
 
 const DashboardIndex = () => {
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   console.log(session);
 
   return <div>Dashboard Content</div>;

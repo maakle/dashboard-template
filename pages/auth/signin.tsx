@@ -54,7 +54,11 @@ export default function SignIn(props: SignInProps) {
                       leftIcon={getProviderIcon(provider.id)}
                       colorScheme="cool-gray"
                       variant="solid"
-                      onClick={() => signIn(provider.id)}
+                      onClick={() =>
+                        signIn(provider.id, {
+                          callbackUrl: `${window.location.origin}/dashboard`
+                        })
+                      }
                     >
                       Sign in with {provider.name}
                     </Button>
