@@ -2,6 +2,16 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
+To install all dependencies, run:
+
+```bash
+npm install
+# or
+yarn
+```
+
+You need to set all environment variables before the next step. They can be found in the files `env.example and `.env.exmaple.local`. Due tu prisma we need to set the prisma variables in a separate file and also include a shadow db to run some migrations.
+
 First, run the development server:
 
 ```bash
