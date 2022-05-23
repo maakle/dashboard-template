@@ -1,6 +1,6 @@
 import { signIn, useSession } from 'next-auth/react';
 import React from 'react';
-import LoadingSpinner from '../loading-spinner';
+import LoadingSpinner from '../util/LoadingSpinner';
 
 const AuthGuard = ({ children }) => {
   const { data: session, status } = useSession();

@@ -9,27 +9,14 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import { CtxOrReq } from 'next-auth/client/_utils';
-import {
-  ClientSafeProvider,
-  getCsrfToken,
-  getProviders,
-  signIn
-} from 'next-auth/react';
+import { ClientSafeProvider, getProviders, signIn } from 'next-auth/react';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
+import EmailForm from '../../components/auth/EmailForm';
 interface SignInProps {
-  csrfToken: string;
   providers: ClientSafeProvider[];
 }
 
 export default function SignIn(props: SignInProps) {
-  const getProviderIcon = (providerName: string): JSX.Element => {
-    if (providerName === 'github') {
-      return <BsGithub />;
-    } else {
-      return <BsGoogle />;
-    }
-  };
-
   return (
     <Flex align={'center'} justify={'center'}>
       <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
@@ -46,25 +33,37 @@ export default function SignIn(props: SignInProps) {
           p={8}
         >
           <Stack spacing={4}>
-            {props.providers &&
-              Object.values(props.providers).map((provider) => (
-                <div key={provider.name} style={{ marginBottom: 0 }}>
-                  <Center>
-                    <Button
-                      leftIcon={getProviderIcon(provider.id)}
-                      colorScheme="cool-gray"
-                      variant="solid"
-                      onClick={() =>
-                        signIn(provider.id, {
-                          callbackUrl: `${window.location.origin}/dashboard`
-                        })
-                      }
-                    >
-                      Sign in with {provider.name}
-                    </Button>
-                  </Center>
-                </div>
-              ))}
+            <EmailForm />
+
+            <Center>
+              <Text>or</Text>
+            </Center>
+
+            <Button
+              leftIcon={<BsGithub />}
+              colorScheme="cool-gray"
+              variant="solid"
+              onClick={() =>
+                signIn('github', {
+                  callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
+                })
+              }
+            >
+              Sign in with Github
+            </Button>
+
+            <Button
+              leftIcon={<BsGoogle />}
+              colorScheme="cool-gray"
+              variant="solid"
+              onClick={() =>
+                signIn('google', {
+                  callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
+                })
+              }
+            >
+              Sign in with Google
+            </Button>
           </Stack>
         </Box>
       </Stack>
@@ -74,11 +73,10 @@ export default function SignIn(props: SignInProps) {
 
 export async function getServerSideProps(context: CtxOrReq) {
   const providers = await getProviders();
-  const csrfToken = await getCsrfToken(context);
+
   return {
     props: {
-      providers,
-      csrfToken
+      providers
     }
   };
 }
