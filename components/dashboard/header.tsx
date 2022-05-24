@@ -34,7 +34,14 @@ export default function Header() {
             <ThemeToggle mr={`-${3}`} />
             <Center>
               <Button
-                colorScheme="blue"
+                backgroundColor="gray.900"
+                color="white"
+                fontWeight="medium"
+                _hover={{ bg: 'gray.700' }}
+                _active={{
+                  bg: 'gray.800',
+                  transform: 'scale(0.95)'
+                }}
                 marginLeft={10}
                 size="sm"
                 onClick={() =>
