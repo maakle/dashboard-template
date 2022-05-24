@@ -2,8 +2,8 @@ import { Button, Center, Flex, useColorModeValue } from '@chakra-ui/react';
 import { signOut } from 'next-auth/react';
 import NextLink from 'next/link';
 import { MY_APP } from '../../utils/constants';
-import ThemeToggle from '../theme-toggle';
-import MobileNav from './mobile-nav';
+import ThemeToggle from '../ThemeToggle';
+import MobileNav from './MobileNav';
 
 export default function Header() {
   const bgColor = useColorModeValue('white', 'gray.800');

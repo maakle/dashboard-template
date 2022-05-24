@@ -1,7 +1,7 @@
+import { Button, Center, Flex, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { useColorModeValue, Button, Flex } from '@chakra-ui/react';
-import ThemeToggle from './theme-toggle';
 import { MY_APP } from '../utils/constants';
+import ThemeToggle from './ThemeToggle';
 
 export default function Header() {
   const bgColor = useColorModeValue('white', 'gray.900');
@@ -31,6 +31,25 @@ export default function Header() {
             </Flex>
             <Flex>
               <ThemeToggle />
+
+              <Center>
+                <Button
+                  as="a"
+                  href="/auth/signin"
+                  backgroundColor="gray.900"
+                  color="white"
+                  fontWeight="medium"
+                  ml={4}
+                  maxW="200px"
+                  _hover={{ bg: 'gray.700' }}
+                  _active={{
+                    bg: 'gray.800',
+                    transform: 'scale(0.95)'
+                  }}
+                >
+                  Sign In
+                </Button>
+              </Center>
             </Flex>
           </Flex>
         </Flex>

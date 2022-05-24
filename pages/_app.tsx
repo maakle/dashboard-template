@@ -3,7 +3,7 @@ import { SessionProvider } from 'next-auth/react';
 import React from 'react';
 import AuthGuard from '../components/auth/AuthGuard';
 import theme from '../components/design-system';
-import Nprogress from '../components/nprogress';
+import Nprogress from '../components/NProgress';
 import DefaultLayout from '../layouts/default';
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => {

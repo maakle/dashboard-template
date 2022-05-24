@@ -31,23 +31,6 @@ const Home = () => {
       >
         View Dashboard
       </Button>
-
-      <Button
-        as="a"
-        href="/auth/signin"
-        backgroundColor="gray.900"
-        color="white"
-        fontWeight="medium"
-        mt={4}
-        maxW="200px"
-        _hover={{ bg: 'gray.700' }}
-        _active={{
-          bg: 'gray.800',
-          transform: 'scale(0.95)'
-        }}
-      >
-        Sign In
-      </Button>
     </Flex>
   );
 };

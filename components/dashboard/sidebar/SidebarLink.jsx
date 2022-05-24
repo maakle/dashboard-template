@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import { NavLink } from '../nav-link';
+import { NavLink } from '../NavLink';
 
 const SidebarLink = ({ href, children, icon }) => (
   <NavLink href={href}>

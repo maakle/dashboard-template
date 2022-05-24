@@ -1,7 +1,7 @@
 import { Box, Flex, useColorModeValue, VStack } from '@chakra-ui/react';
 import { LogoMark, LogoOnDark } from '../../icons';
-import SidebarContainer from './container';
-import PageLinks from './pagelinks';
+import SidebarContainer from './Container';
+import PageLinks from './PageLinks';
 
 export default function Sidebar(props) {
   const bgColor = useColorModeValue('white', 'gray.800');

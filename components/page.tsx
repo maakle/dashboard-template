@@ -1,5 +1,5 @@
 import { Flex, useColorModeValue } from '@chakra-ui/react';
-import Header from './header';
+import Header from './Header';
 
 export default function Page({ children }) {
   const bgColor = useColorModeValue('white', 'gray.900');

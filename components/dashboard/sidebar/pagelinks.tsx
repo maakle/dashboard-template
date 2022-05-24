@@ -7,7 +7,7 @@ import {
   Inbox,
   UserGroup
 } from '../../icons';
-import SidebarLink from './link';
+import SidebarLink from './SidebarLink';
 
 const PageLinks = () => {
   return (

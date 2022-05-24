@@ -1,5 +1,5 @@
 import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
-import Header from './header';
+import Header from './Header';
 import Sidebar from './sidebar';
 
 const Dashboard = ({ children }) => {

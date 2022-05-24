@@ -1,4 +1,4 @@
-import Page from '../components/page';
+import Page from '../components/Page';
 
 const Default = ({ children }) => <Page>{children}</Page>;
 
