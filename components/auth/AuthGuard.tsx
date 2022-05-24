@@ -1,6 +1,6 @@
+import { Box, Flex, Spinner } from '@chakra-ui/react';
 import { signIn, useSession } from 'next-auth/react';
 import React from 'react';
-import LoadingSpinner from '../util/LoadingSpinner';
 
 const AuthGuard = ({ children }) => {
   const { data: session, status } = useSession();
@@ -16,7 +16,13 @@ const AuthGuard = ({ children }) => {
 
   // Session is being fetched, or no user.
   // If no user, useEffect() will redirect.
-  return <LoadingSpinner />;
+  return (
+    <Flex marginTop="50vh">
+      <Box margin="auto">
+        <Spinner />
+      </Box>
+    </Flex>
+  );
 };
 
 export default AuthGuard;
