@@ -1,5 +1,5 @@
 import { VStack } from '@chakra-ui/react';
-import { Folder, Home, UserGroup } from '../../icons';
+import { Folder, Home, Settings } from '../../icons';
 import SidebarLink from './SidebarLink';
 
 const PageLinks = () => {
@@ -13,8 +13,8 @@ const PageLinks = () => {
         Projects
       </SidebarLink>
 
-      <SidebarLink href="/dashboard/team" icon={UserGroup}>
-        Team
+      <SidebarLink href="/dashboard/settings" icon={Settings}>
+        Settings
       </SidebarLink>
     </VStack>
   );

@@ -10,3 +10,4 @@ export { default as Template } from './template';
 export { default as UserGroup } from './user-group';
 export { default as ChartSquareBar } from './chart-square-bar';
 export { default as ClipboardList } from './clipboard-list';
+export { default as Settings } from './settings';
