@@ -1,14 +1,15 @@
-import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
 import Header from './Header';
 import Sidebar from './sidebar';
 
 const Dashboard = ({ children }) => {
   const bgColor = useColorModeValue('white', 'gray.800');
+  const [isSmallScreen] = useMediaQuery('(max-width: 768px)');
 
   return (
     <>
       <Header />
-      <Sidebar display={['none', null, 'flex']} w={64} />
+      {!isSmallScreen && <Sidebar display={['none', null, 'flex']} w={64} />}
 
       <Flex as="main" ml={[0, 0, 64]} bg={bgColor}>
         <Flex direction="column" w="full">

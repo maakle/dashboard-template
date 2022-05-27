@@ -1,6 +1,7 @@
+import OrganizationSettings from '../../components/organization';
 import { getLayout } from '../../layouts/dashboard';
 
-const DashboardTeam = () => <div>team</div>;
+const DashboardTeam = () => <OrganizationSettings />;
 
 DashboardTeam.getLayout = getLayout;
 

@@ -69,8 +69,12 @@ export default function Header() {
                     minWidth={200}
                     justifyContent="center"
                   >
-                    <MenuItem>Projects</MenuItem>
-                    <MenuItem>Settings</MenuItem>
+                    <MenuItem as="a" href="/profile">
+                      Profile
+                    </MenuItem>
+                    <MenuItem as="a" href="/dashboard/settings">
+                      Settings
+                    </MenuItem>
                     <MenuDivider />
 
                     <MenuItem
