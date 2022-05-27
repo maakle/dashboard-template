@@ -17,7 +17,6 @@ const EmailForm = () => {
     event.preventDefault();
 
     try {
-      console.log('Submit', email);
       await signIn('email', {
         email,
         callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`

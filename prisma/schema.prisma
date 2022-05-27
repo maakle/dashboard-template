@@ -44,7 +44,7 @@ model User {
   updatedAt     DateTime     @updatedAt
   accounts      Account[]
   sessions      Session[]
-  Membership    Membership[]
+  memberships   Membership[]
 }
 
 model VerificationToken {

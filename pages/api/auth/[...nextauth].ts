@@ -1,4 +1,5 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
+import { Organization } from '@prisma/client';
 import NextAuth from 'next-auth';
 import EmailProvider from 'next-auth/providers/email';
 import GithubProvider from 'next-auth/providers/github';
@@ -23,5 +24,36 @@ export default NextAuth({
   ],
   pages: {
     signIn: '/auth/signin'
+  },
+  callbacks: {
+    async session({ session, user }) {
+      const userObject = await prisma.user.findFirst({
+        where: { id: user.id },
+        include: {
+          memberships: {
+            include: {
+              organization: true
+            }
+          }
+        }
+      });
+      session.user = userObject;
+      return session;
+    }
+  },
+  events: {
+    createUser: async (message) => {
+      // Creates a default organization & membership for the user upon signup
+      const organization: Organization = await prisma.organization.create({
+        data: { name: 'Default Organization' }
+      });
+      await prisma.membership.create({
+        data: {
+          userId: message.user.id,
+          organizationId: organization.id,
+          role: 'OWNER'
+        }
+      });
+    }
   }
 });
