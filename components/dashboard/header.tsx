@@ -1,4 +1,16 @@
-import { Button, Center, Flex, useColorModeValue } from '@chakra-ui/react';
+import { useMediaQuery } from '@chakra-ui/media-query';
+import {
+  Avatar,
+  Button,
+  Flex,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+  Stack,
+  useColorModeValue
+} from '@chakra-ui/react';
 import { signOut } from 'next-auth/react';
 import NextLink from 'next/link';
 import { MY_APP } from '../../utils/constants';
@@ -7,6 +19,7 @@ import MobileNav from './MobileNav';
 
 export default function Header() {
   const bgColor = useColorModeValue('white', 'gray.800');
+  const [isSmallScreen] = useMediaQuery('(max-width: 768px)');
 
   return (
     <Flex
@@ -30,31 +43,48 @@ export default function Header() {
               </Button>
             </NextLink>
           </Flex>
-          <Flex>
-            <ThemeToggle mr={`-${3}`} />
-            <Center>
-              <Button
-                backgroundColor="gray.900"
-                color="white"
-                fontWeight="medium"
-                _hover={{ bg: 'gray.700' }}
-                _active={{
-                  bg: 'gray.800',
-                  transform: 'scale(0.95)'
-                }}
-                marginLeft={10}
-                size="sm"
-                onClick={() =>
-                  signOut({
-                    callbackUrl: `${window.location.origin}`
-                  })
-                }
-              >
-                Signout
-              </Button>
-            </Center>
 
-            <MobileNav />
+          <Flex alignItems="center">
+            <Stack direction="row" spacing={8}>
+              <ThemeToggle mr={`-${3}`} />
+
+              {isSmallScreen ? (
+                <MobileNav />
+              ) : (
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rounded="full"
+                    variant="link"
+                    cursor="pointer"
+                    minW={0}
+                  >
+                    <Avatar
+                      size="sm"
+                      src="https://images.unsplash.com/photo-1493666438817-866a91353ca9?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&s=b616b2c5b373a80ffc9636ba24f7a4a9"
+                    />
+                  </MenuButton>
+                  <MenuList
+                    alignItems="center"
+                    minWidth={200}
+                    justifyContent="center"
+                  >
+                    <MenuItem>Projects</MenuItem>
+                    <MenuItem>Settings</MenuItem>
+                    <MenuDivider />
+
+                    <MenuItem
+                      color="red.500"
+                      onClick={() => {
+                        signOut({ callbackUrl: `${window.location.origin}` });
+                      }}
+                    >
+                      Logout
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              )}
+            </Stack>
           </Flex>
         </Flex>
       </Flex>
