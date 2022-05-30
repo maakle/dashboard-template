@@ -43,20 +43,20 @@ const OrganizationSettings = () => {
           </Box>
         </GridItem>
         <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
-          <chakra.form
-            method="POST"
-            shadow="base"
-            rounded={[null, 'md']}
-            overflow={{ sm: 'hidden' }}
+          <Stack
+            px={4}
+            py={5}
+            p={[null, 6]}
+            bg={useColorModeValue('white', 'gray.700')}
+            spacing={6}
           >
-            <Stack
-              px={4}
-              py={5}
-              p={[null, 6]}
-              bg={useColorModeValue('white', 'gray.700')}
-              spacing={6}
-            >
-              <Box>
+            <Box>
+              <chakra.form
+                method="POST"
+                shadow="base"
+                rounded={[null, 'md']}
+                overflow={{ sm: 'hidden' }}
+              >
                 <Heading as="h5" size="sm" mb={2}>
                   Organization Name
                 </Heading>
@@ -74,16 +74,32 @@ const OrganizationSettings = () => {
                   maxWidth={400}
                 />
 
-                <Divider marginY={10} />
+                <Box px={{ base: 4, sm: 6 }} pt={5} textAlign="right">
+                  <Button
+                    backgroundColor="gray.900"
+                    color="white"
+                    fontWeight="medium"
+                    _hover={{ bg: 'gray.700' }}
+                    _active={{
+                      bg: 'gray.800',
+                      transform: 'scale(0.95)'
+                    }}
+                  >
+                    Save
+                  </Button>
+                </Box>
+              </chakra.form>
 
+              <Divider marginY={10} />
+
+              <SimpleGrid columns={2} spacing={10}>
                 <Heading as="h5" size="sm" mb={2}>
                   Team
                 </Heading>
 
-                <TeamMemberTable />
-              </Box>
-              <Box px={{ base: 4, sm: 6 }} py={3} textAlign="right">
                 <Button
+                  justifySelf="end"
+                  size="sm"
                   backgroundColor="gray.900"
                   color="white"
                   fontWeight="medium"
@@ -93,11 +109,13 @@ const OrganizationSettings = () => {
                     transform: 'scale(0.95)'
                   }}
                 >
-                  Save
+                  Add Member
                 </Button>
-              </Box>
-            </Stack>
-          </chakra.form>
+              </SimpleGrid>
+
+              <TeamMemberTable />
+            </Box>
+          </Stack>
         </GridItem>
       </SimpleGrid>
     </Box>
