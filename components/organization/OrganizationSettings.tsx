@@ -8,18 +8,19 @@ import {
   Input,
   SimpleGrid,
   Stack,
-  Table,
-  TableContainer,
-  Tbody,
-  Td,
   Text,
-  Th,
-  Thead,
-  Tr,
   useColorModeValue
 } from '@chakra-ui/react';
+import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
+import TeamMemberTable from './TeamMemberTable';
 
 const OrganizationSettings = () => {
+  const session = useSession();
+  console.log('session ', session);
+
+  useEffect(() => {}, []);
+
   return (
     <Box mt={[10, 0]}>
       <SimpleGrid
@@ -79,28 +80,7 @@ const OrganizationSettings = () => {
                   Team
                 </Heading>
 
-                <TableContainer>
-                  <Table variant="simple">
-                    <Thead>
-                      <Tr>
-                        <Th>Name</Th>
-                        <Th>Role</Th>
-                        <Th>Action</Th>
-                      </Tr>
-                    </Thead>
-                    <Tbody>
-                      <Tr>
-                        <Td>Mathias</Td>
-                        <Td>Admin</Td>
-                        <Td>
-                          <Button colorScheme="red" size="xs">
-                            Remove
-                          </Button>
-                        </Td>
-                      </Tr>
-                    </Tbody>
-                  </Table>
-                </TableContainer>
+                <TeamMemberTable />
               </Box>
               <Box px={{ base: 4, sm: 6 }} py={3} textAlign="right">
                 <Button
