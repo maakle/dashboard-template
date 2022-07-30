@@ -9,14 +9,20 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  useColorModeValue
+  useColorModeValue,
+  useDisclosure
 } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
+import BlurryOverlay from '../common/BlurryOverlay';
+import InviteTeamMemberModal from './InviteTeamMemberModal';
 import TeamMemberTable from './TeamMemberTable';
 
 const OrganizationSettings = () => {
   const session = useSession();
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const [overlay, setOverlay] = React.useState(<BlurryOverlay />);
+
   console.log('session ', session);
 
   useEffect(() => {}, []);
@@ -108,9 +114,20 @@ const OrganizationSettings = () => {
                     bg: 'gray.800',
                     transform: 'scale(0.95)'
                   }}
+                  onClick={() => {
+                    setOverlay(<BlurryOverlay />);
+                    onOpen();
+                  }}
                 >
                   Add Member
                 </Button>
+
+                <InviteTeamMemberModal
+                  isOpen={isOpen}
+                  onOpen={onOpen}
+                  onClose={onClose}
+                  overlay={overlay}
+                />
               </SimpleGrid>
 
               <TeamMemberTable />
