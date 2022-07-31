@@ -8,8 +8,8 @@
     "start": "next start -p $PORT"
   },
   "dependencies": {
-    "@chakra-ui/react": "^2.0.2",
-    "@chakra-ui/system": "^2.0.2",
+    "@chakra-ui/react": "^2.2.4",
+    "@chakra-ui/system": "^2.2.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@lottiefiles/react-lottie-player": "^3.4.7",
