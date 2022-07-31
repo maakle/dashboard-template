@@ -91,7 +91,7 @@ const OrganizationSettings = () => {
                       transform: 'scale(0.95)'
                     }}
                   >
-                    Save
+                    Save Changes
                   </Button>
                 </Box>
               </chakra.form>
