@@ -10,12 +10,12 @@ import {
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
-const EmailForm = () => {
+const EmailForm = ({ setLoading }) => {
   const [email, setEmail] = useState('');
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    setLoading(true);
     try {
       await signIn('email', {
         email,

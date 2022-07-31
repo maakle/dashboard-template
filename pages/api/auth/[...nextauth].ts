@@ -23,7 +23,8 @@ export default NextAuth({
     })
   ],
   pages: {
-    signIn: '/auth/signin'
+    signIn: '/auth/signin',
+    verifyRequest: '/auth/verify-request'
   },
   callbacks: {
     async session({ session, user }) {
