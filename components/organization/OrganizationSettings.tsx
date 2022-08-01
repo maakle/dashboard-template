@@ -12,18 +12,17 @@ import {
   useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react';
-import { useSession } from 'next-auth/react';
+import { unstable_getServerSession } from 'next-auth';
 import React, { useEffect } from 'react';
+import { authOptions } from '../../pages/api/auth/[...nextauth]';
 import BlurryOverlay from '../common/BlurryOverlay';
-import InviteTeamMemberModal from './InviteTeamMemberModal';
+import InviteTeamMemberModal from '../modals/InviteTeamMemberModal';
 import TeamMemberTable from './TeamMemberTable';
 
 const OrganizationSettings = () => {
-  const session = useSession();
+  // const session = useSession();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<BlurryOverlay />);
-
-  console.log('session ', session);
 
   useEffect(() => {}, []);
 
@@ -140,3 +139,4 @@ const OrganizationSettings = () => {
 };
 
 export default OrganizationSettings;
+

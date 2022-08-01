@@ -1,12 +1,13 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { Organization } from '@prisma/client';
+import type { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth';
 import EmailProvider from 'next-auth/providers/email';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import prisma from '../../../lib/prisma';
 
-export default NextAuth({
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     EmailProvider({
@@ -28,17 +29,14 @@ export default NextAuth({
   },
   callbacks: {
     async session({ session, user }) {
-      const userObject = await prisma.user.findFirst({
+      const userAndMemberships = await prisma.user.findFirst({
         where: { id: user.id },
         include: {
-          memberships: {
-            include: {
-              organization: true
-            }
-          }
+          memberships: true
         }
       });
-      session.user = userObject;
+
+      session.user = userAndMemberships;
       return session;
     }
   },
@@ -57,4 +55,6 @@ export default NextAuth({
       });
     }
   }
-});
+};
+
+export default NextAuth(authOptions);

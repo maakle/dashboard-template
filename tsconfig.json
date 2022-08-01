@@ -13,8 +13,14 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "typeRoots": ["./typings"]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/icons/heroicons/settings.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "components/icons/heroicons/settings.js"
+  ],
   "exclude": ["node_modules"]
 }
