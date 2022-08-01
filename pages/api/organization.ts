@@ -16,11 +16,15 @@ export default async function handler(
 
   if (req.method === 'GET') {
     const session = await unstable_getServerSession(req, res, authOptions);
+    // TODO: Implement feature for active organization. Now just pick the top
     const membership = session.user.memberships[0];
     const organization = await prisma.organization.findUnique({
       where: { id: membership.organizationId }
     });
 
-    return res.status(200).json({ organization });
+    return res.status(200).json(organization);
+  }
+
+  if (req.method === 'PATCH') {
   }
 }

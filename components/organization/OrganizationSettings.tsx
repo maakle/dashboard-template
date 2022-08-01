@@ -1,31 +1,22 @@
 import {
   Box,
-  Button,
-  chakra,
   Divider,
   GridItem,
   Heading,
-  Input,
   SimpleGrid,
   Stack,
   Text,
-  useColorModeValue,
-  useDisclosure
+  useColorModeValue
 } from '@chakra-ui/react';
 import { Organization } from '@prisma/client';
-import React from 'react';
-import BlurryOverlay from '../common/BlurryOverlay';
-import InviteTeamMemberModal from '../modals/InviteTeamMemberModal';
-import TeamMemberTable from './TeamMemberTable';
+import OrganizationDetails from './OrganizationDetails';
+import TeamSection from './TeamSection';
 
 const OrganizationSettings = ({
   organization
 }: {
   organization: Organization;
 }) => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
-  const [overlay, setOverlay] = React.useState(<BlurryOverlay />);
-
   return (
     <Box bg={useColorModeValue('gray.50', 'inherit')} p={10} borderRadius="lg">
       <Box mt={[10, 0]}>
@@ -58,80 +49,11 @@ const OrganizationSettings = ({
               spacing={6}
             >
               <Box>
-                <chakra.form
-                  method="POST"
-                  shadow="base"
-                  rounded={[null, 'md']}
-                  overflow={{ sm: 'hidden' }}
-                >
-                  <Heading as="h5" size="sm" mb={2}>
-                    Organization Name
-                  </Heading>
-
-                  <Input
-                    type="text"
-                    name="company_name"
-                    id="company_name"
-                    autoComplete="company"
-                    mt={1}
-                    shadow="sm"
-                    size="sm"
-                    w="full"
-                    rounded="md"
-                    maxWidth={400}
-                  />
-
-                  <Box px={{ base: 4, sm: 6 }} pt={5} textAlign="right">
-                    <Button
-                      backgroundColor="gray.900"
-                      color="white"
-                      fontWeight="medium"
-                      _hover={{ bg: 'gray.700' }}
-                      _active={{
-                        bg: 'gray.800',
-                        transform: 'scale(0.95)'
-                      }}
-                    >
-                      Save Changes
-                    </Button>
-                  </Box>
-                </chakra.form>
+                <OrganizationDetails organization={organization} />
 
                 <Divider marginY={10} />
 
-                <SimpleGrid columns={2} spacing={10}>
-                  <Heading as="h5" size="sm" mb={2}>
-                    Team
-                  </Heading>
-
-                  <Button
-                    justifySelf="end"
-                    size="sm"
-                    backgroundColor="gray.900"
-                    color="white"
-                    fontWeight="medium"
-                    _hover={{ bg: 'gray.700' }}
-                    _active={{
-                      bg: 'gray.800',
-                      transform: 'scale(0.95)'
-                    }}
-                    onClick={() => {
-                      setOverlay(<BlurryOverlay />);
-                      onOpen();
-                    }}
-                  >
-                    Add Member
-                  </Button>
-
-                  <InviteTeamMemberModal
-                    isOpen={isOpen}
-                    onOpen={onOpen}
-                    onClose={onClose}
-                    overlay={overlay}
-                  />
-                </SimpleGrid>
-
-                <TeamMemberTable />
+                <TeamSection organization={organization} />
               </Box>
             </Stack>
           </GridItem>

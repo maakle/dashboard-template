@@ -5,11 +5,11 @@ import { useOrganization } from '../../hooks/useOrganization';
 import { getLayout } from '../../layouts/dashboard';
 
 const OrganizationSettingsPage = () => {
-  const { organization, isLoading, isError } = useOrganization();
+  const { data, isLoading, isError } = useOrganization();
   if (isError) return <LoadingError />;
   if (isLoading) return <LoadingSpinner />;
 
-  return <OrganizationSettings organization={organization} />;
+  return <OrganizationSettings organization={data} />;
 };
 
 OrganizationSettingsPage.getLayout = getLayout;
