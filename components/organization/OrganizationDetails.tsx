@@ -7,11 +7,10 @@ import {
   Heading,
   Input
 } from '@chakra-ui/react';
-import { Organization } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
-import { updateOrganization } from '../../mutations/updateOrganization';
 import { OrganzationQueryType } from '../../hooks/useOrganization';
+import { updateOrganization } from '../../mutations/updateOrganization';
 
 export default function OrganizationDetails({
   organization
