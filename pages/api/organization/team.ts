@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
+import { sendOrganizationInvite } from '../../../services/EmailService';
 
 export default async function handler(
   req: NextApiRequest,
@@ -13,11 +14,18 @@ export default async function handler(
 
   switch (req.method) {
     case 'POST': {
-      console.log('body ', req.body);
+      try {
+        const { organizationId, email } = req.body;
 
-      const { organizationId, email } = req.body;
+        // TODO: Create Email invite in template
 
-      console.log(email + ' invited to ' + organizationId);
+        sendOrganizationInvite(email);
+        res.status(200).json({ message: 'Email sent' });
+      } catch (error) {
+        res.status(500).json({
+          error: 'Error occurred while retrieving your organization.'
+        });
+      }
     }
   }
 }

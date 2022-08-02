@@ -52,7 +52,7 @@ export default function InviteTeamMemberModal({
       setTimeout(() => {
         setPlaySuccessAnimation(false);
         onClose();
-      }, 2500);
+      }, 2300);
     } else {
       setInvalidEmail(true);
     }
@@ -79,7 +79,7 @@ export default function InviteTeamMemberModal({
               <Box>
                 <Player
                   autoplay
-                  speed={0.7}
+                  speed={0.6}
                   loop={false}
                   src={require('/public/animations/success.json')}
                   style={{ height: '100px', width: '100px' }}
