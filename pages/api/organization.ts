@@ -15,16 +15,36 @@ export default async function handler(
   });
 
   if (req.method === 'GET') {
-    const session = await unstable_getServerSession(req, res, authOptions);
-    // TODO: Implement feature for active organization. Now just pick the top
-    const membership = session.user.memberships[0];
-    const organization = await prisma.organization.findUnique({
-      where: { id: membership.organizationId }
-    });
+    try {
+      const session = await unstable_getServerSession(req, res, authOptions);
+      // TODO: Implement feature for active organization. Now just pick the top
+      const membership = session.user.memberships[0];
+      const organization = await prisma.organization.findUnique({
+        where: { id: membership.organizationId }
+      });
 
-    return res.status(200).json(organization);
+      res.status(200).json(organization);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ err: 'Error occurred while retrieving your organization.' });
+    }
   }
 
   if (req.method === 'PATCH') {
+    try {
+      const { organizationId, name } = req.body;
+      const newOrganization = await prisma.organization.update({
+        where: { id: organizationId },
+        data: {
+          name: name
+        }
+      });
+      res.status(200).json(newOrganization);
+    } catch (error) {
+      res
+        .status(500)
+        .json({ err: 'Error occurred while updating your organization.' });
+    }
   }
 }

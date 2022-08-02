@@ -9,6 +9,8 @@ import {
 } from '@chakra-ui/react';
 import { Organization } from '@prisma/client';
 import { useForm } from 'react-hook-form';
+import useSWRMutation from 'swr/mutation';
+import { updateOrganization } from '../../mutations/updateOrganization';
 
 export default function OrganizationDetails({
   organization
@@ -21,14 +23,14 @@ export default function OrganizationDetails({
     formState: { errors, isSubmitting }
   } = useForm();
 
-  function onSubmit(values: any) {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        resolve(true);
-      }, 3000);
+  const { trigger } = useSWRMutation('/api/organization', updateOrganization);
+
+  const onSubmit = async (values: any) => {
+    trigger({
+      organizationId: organization.id,
+      name: values.organizationName
     });
-  }
+  };
 
   console.log(errors);
 
