@@ -1,8 +1,8 @@
 import {
   Box,
   Button,
-  chakra,
   FormControl,
+  FormErrorMessage,
   FormLabel,
   Input,
   Modal,
@@ -15,9 +15,9 @@ import {
 } from '@chakra-ui/react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 import { inviteTeammember } from '../../mutations/inviteTeammember';
+import { emailIsValid } from '../../utils/helper';
 
 export default function InviteTeamMemberModal({
   isOpen,
@@ -26,16 +26,13 @@ export default function InviteTeamMemberModal({
   overlay,
   organizationId
 }) {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors, isSubmitting }
-  } = useForm();
   const { trigger } = useSWRMutation(
     '/api/organization/team',
     inviteTeammember
   );
   const [playSuccessAnimation, setPlaySuccessAnimation] = useState(false);
+  const [email, setEmail] = useState('');
+  const [invalidEmail, setInvalidEmail] = useState(false);
 
   const handleModalClose = () => {
     if (playSuccessAnimation) {
@@ -44,13 +41,21 @@ export default function InviteTeamMemberModal({
     onClose();
   };
 
-  const onSubmit = async (values: any) => {
-    trigger({
-      email: values.email,
-      organizationId
-    });
-    setPlaySuccessAnimation(true);
-    setTimeout(onClose(), 3000);
+  const handleInvite = () => {
+    if (emailIsValid(email)) {
+      setInvalidEmail(false);
+      trigger({
+        email,
+        organizationId
+      });
+      setPlaySuccessAnimation(true);
+      setTimeout(() => {
+        setPlaySuccessAnimation(false);
+        onClose();
+      }, 2500);
+    } else {
+      setInvalidEmail(true);
+    }
   };
 
   return (
@@ -75,7 +80,7 @@ export default function InviteTeamMemberModal({
                 <Player
                   autoplay
                   speed={0.7}
-                  loop={true}
+                  loop={false}
                   src={require('/public/animations/success.json')}
                   style={{ height: '100px', width: '100px' }}
                 />
@@ -86,7 +91,7 @@ export default function InviteTeamMemberModal({
             </Box>
           </Box>
         ) : (
-          <chakra.form onSubmit={() => handleSubmit(onSubmit)}>
+          <Box>
             <ModalHeader>Invite Team Member</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
@@ -94,18 +99,16 @@ export default function InviteTeamMemberModal({
                 Enter your team members email below to send an invite.
               </Text>
               <Box padding={4}>
-                <FormControl>
+                <FormControl isInvalid={invalidEmail}>
                   <FormLabel htmlFor="email">Email</FormLabel>
                   <Input
                     type="email"
-                    {...register('email', {
-                      required: 'Please enter an valid email',
-                      minLength: {
-                        value: 3,
-                        message: 'Organization name is too short'
-                      }
-                    })}
+                    autoComplete="email"
+                    onChange={(e) => setEmail(e.target.value)}
                   />
+                  <FormErrorMessage>
+                    Please enter a valid email
+                  </FormErrorMessage>
                 </FormControl>
               </Box>
             </ModalBody>
@@ -122,12 +125,13 @@ export default function InviteTeamMemberModal({
                   bg: 'gray.800',
                   transform: 'scale(0.95)'
                 }}
-                type="submit"
+                type="button"
+                onClick={() => handleInvite()}
               >
                 Send Invite
               </Button>
             </ModalFooter>
-          </chakra.form>
+          </Box>
         )}
       </ModalContent>
     </Modal>

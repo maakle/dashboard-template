@@ -13,7 +13,10 @@ export default async function handler(
 
   switch (req.method) {
     case 'POST': {
+      console.log('body ', req.body);
+
       const { organizationId, email } = req.body;
+
       console.log(email + ' invited to ' + organizationId);
     }
   }
