@@ -8,15 +8,17 @@ import {
   Text,
   useColorModeValue
 } from '@chakra-ui/react';
-import { Organization } from '@prisma/client';
+import { useOrganization } from '../../hooks/useOrganization';
+import LoadingError from '../common/LoadingError';
+import LoadingSpinner from '../common/LoadingSpinner';
 import OrganizationDetails from './OrganizationDetails';
 import TeamSection from './TeamSection';
 
-const OrganizationSettings = ({
-  organization
-}: {
-  organization: Organization;
-}) => {
+const OrganizationSettings = () => {
+  const { data, isLoading, isError } = useOrganization();
+  if (isError) return <LoadingError />;
+  if (isLoading) return <LoadingSpinner />;
+
   return (
     <Box bg={useColorModeValue('gray.50', 'inherit')} p={10} borderRadius="lg">
       <Box mt={[10, 0]}>
@@ -49,11 +51,11 @@ const OrganizationSettings = ({
               spacing={6}
             >
               <Box>
-                <OrganizationDetails organization={organization} />
+                <OrganizationDetails organization={data} />
 
                 <Divider marginY={10} />
 
-                <TeamSection organization={organization} />
+                <TeamSection organization={data} />
               </Box>
             </Stack>
           </GridItem>

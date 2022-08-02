@@ -21,7 +21,8 @@ export default async function handler(
         // TODO: Implement feature for active organization. Now just pick the top
         const membership = session.user.memberships[0];
         const organization = await prisma.organization.findUnique({
-          where: { id: membership.organizationId }
+          where: { id: membership.organizationId },
+          include: { memberships: { include: { user: true } } }
         });
 
         res.status(200).json(organization);

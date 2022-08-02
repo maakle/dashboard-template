@@ -8,17 +8,14 @@ import {
   Thead,
   Tr
 } from '@chakra-ui/react';
-import { useTeam } from '../../hooks/useTeam';
+import { OrganzationQueryType } from '../../hooks/useOrganization';
 import { capitalizeFirstLetter } from '../../utils/helper';
-import LoadingError from '../common/LoadingError';
-import LoadingSpinner from '../common/LoadingSpinner';
 
-const TeamMemberTable = () => {
-  const { data, isLoading, isError } = useTeam();
-
-  if (isError) return <LoadingError />;
-  if (isLoading) return <LoadingSpinner />;
-
+const TeamMemberTable = ({
+  organization
+}: {
+  organization: OrganzationQueryType;
+}) => {
   return (
     <TableContainer>
       <Table variant="simple">
@@ -30,7 +27,7 @@ const TeamMemberTable = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((member) => (
+          {organization.memberships.map((member) => (
             <Tr key={member.id}>
               <Td>{member.user.name}</Td>
               <Td>{capitalizeFirstLetter(member.role)}</Td>

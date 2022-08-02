@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  chakra,
   FormControl,
   FormLabel,
   Input,
@@ -14,13 +15,26 @@ import {
 } from '@chakra-ui/react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import useSWRMutation from 'swr/mutation';
+import { inviteTeammember } from '../../mutations/inviteTeammember';
 
 export default function InviteTeamMemberModal({
   isOpen,
   onOpen,
   onClose,
-  overlay
+  overlay,
+  organizationId
 }) {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting }
+  } = useForm();
+  const { trigger } = useSWRMutation(
+    '/api/organization/team',
+    inviteTeammember
+  );
   const [playSuccessAnimation, setPlaySuccessAnimation] = useState(false);
 
   const handleModalClose = () => {
@@ -28,6 +42,15 @@ export default function InviteTeamMemberModal({
       setPlaySuccessAnimation(false);
     }
     onClose();
+  };
+
+  const onSubmit = async (values: any) => {
+    trigger({
+      email: values.email,
+      organizationId
+    });
+    setPlaySuccessAnimation(true);
+    setTimeout(onClose(), 3000);
   };
 
   return (
@@ -51,7 +74,7 @@ export default function InviteTeamMemberModal({
               <Box>
                 <Player
                   autoplay
-                  speed={0.8}
+                  speed={0.7}
                   loop={true}
                   src={require('/public/animations/success.json')}
                   style={{ height: '100px', width: '100px' }}
@@ -63,7 +86,7 @@ export default function InviteTeamMemberModal({
             </Box>
           </Box>
         ) : (
-          <Box>
+          <chakra.form onSubmit={() => handleSubmit(onSubmit)}>
             <ModalHeader>Invite Team Member</ModalHeader>
             <ModalCloseButton />
             <ModalBody>
@@ -73,7 +96,16 @@ export default function InviteTeamMemberModal({
               <Box padding={4}>
                 <FormControl>
                   <FormLabel htmlFor="email">Email</FormLabel>
-                  <Input id="email" type="email" />
+                  <Input
+                    type="email"
+                    {...register('email', {
+                      required: 'Please enter an valid email',
+                      minLength: {
+                        value: 3,
+                        message: 'Organization name is too short'
+                      }
+                    })}
+                  />
                 </FormControl>
               </Box>
             </ModalBody>
@@ -90,12 +122,12 @@ export default function InviteTeamMemberModal({
                   bg: 'gray.800',
                   transform: 'scale(0.95)'
                 }}
-                onClick={() => setPlaySuccessAnimation(true)}
+                type="submit"
               >
                 Send Invite
               </Button>
             </ModalFooter>
-          </Box>
+          </chakra.form>
         )}
       </ModalContent>
     </Modal>

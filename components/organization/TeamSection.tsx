@@ -1,6 +1,6 @@
 import { Button, Heading, SimpleGrid, useDisclosure } from '@chakra-ui/react';
-import { Organization } from '@prisma/client';
 import React from 'react';
+import { OrganzationQueryType } from '../../hooks/useOrganization';
 import BlurryOverlay from '../common/BlurryOverlay';
 import InviteTeamMemberModal from '../modals/InviteTeamMemberModal';
 import TeamMemberTable from './TeamMemberTable';
@@ -8,7 +8,7 @@ import TeamMemberTable from './TeamMemberTable';
 export default function TeamSection({
   organization
 }: {
-  organization: Organization;
+  organization: OrganzationQueryType;
 }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<BlurryOverlay />);
@@ -44,10 +44,11 @@ export default function TeamSection({
           onOpen={onOpen}
           onClose={onClose}
           overlay={overlay}
+          organizationId={organization.id}
         />
       </SimpleGrid>
 
-      <TeamMemberTable />
+      <TeamMemberTable organization={organization} />
     </>
   );
 }

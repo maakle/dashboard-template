@@ -11,11 +11,12 @@ import { Organization } from '@prisma/client';
 import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 import { updateOrganization } from '../../mutations/updateOrganization';
+import { OrganzationQueryType } from '../../hooks/useOrganization';
 
 export default function OrganizationDetails({
   organization
 }: {
-  organization: Organization;
+  organization: OrganzationQueryType;
 }) {
   const {
     handleSubmit,
@@ -31,8 +32,6 @@ export default function OrganizationDetails({
       name: values.organizationName
     });
   };
-
-  console.log(errors);
 
   return (
     <chakra.form
