@@ -1,6 +1,6 @@
 import { Button, Center, Flex, useColorModeValue } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { MY_APP } from '../utils/constants';
+import { MY_APP } from '../utils/constants.ts';
 import ThemeToggle from './ThemeToggle';
 
 export default function Header() {

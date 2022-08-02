@@ -1,6 +1,6 @@
 import { Button, Flex, Heading } from '@chakra-ui/react';
 import { getLayout } from '../layouts/default';
-import { MY_APP } from '../utils/constants';
+import { MY_APP } from '../utils/constants.ts';
 
 const Home = () => {
   return (
