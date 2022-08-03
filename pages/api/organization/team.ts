@@ -61,7 +61,7 @@ export default async function handler(
             }
           });
 
-          sendOrganizationInvite(email);
+          sendOrganizationInvite(email, token);
           return res.status(200).json({ message: 'Email sent' });
         }
       } catch (error) {

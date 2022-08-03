@@ -29,26 +29,26 @@ export const authOptions: NextAuthOptions = {
   },
   callbacks: {
     async session({ session, user }) {
-      const userAndMemberships = await prisma.user.findFirst({
+      const dbUser = await prisma.user.findUnique({
         where: { id: user.id },
         include: {
           memberships: true
         }
       });
 
-      session.user = userAndMemberships;
+      session.user = dbUser;
       return session;
     }
   },
   events: {
-    createUser: async (message) => {
+    createUser: async ({ user }) => {
       // Creates a default organization & membership for the user upon signup
       const organization: Organization = await prisma.organization.create({
         data: { name: 'Default Organization' }
       });
       await prisma.membership.create({
         data: {
-          userId: message.user.id,
+          userId: user.id,
           organizationId: organization.id,
           role: 'OWNER'
         }

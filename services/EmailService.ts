@@ -12,7 +12,10 @@ const sendEmail = async (
   }
 };
 
-export const sendOrganizationInvite = async (email: string): Promise<void> => {
+export const sendOrganizationInvite = async (
+  email: string,
+  inviteToken: string
+): Promise<void> => {
   const msg = {
     to: email,
     from: {
@@ -21,7 +24,7 @@ export const sendOrganizationInvite = async (email: string): Promise<void> => {
     },
     templateId: 'd-2f01c426fda24f36854279d7199c6cfd',
     dynamicTemplateData: {
-      link: `${process.env.NEXT_PUBLIC_DOMAIN}/auth/signin`
+      link: `${process.env.NEXT_PUBLIC_DOMAIN}/auth/signin?inviteToken=${inviteToken}`
     }
   };
   try {

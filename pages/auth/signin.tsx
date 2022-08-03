@@ -11,6 +11,7 @@ import {
 import { Player } from '@lottiefiles/react-lottie-player';
 import { CtxOrReq } from 'next-auth/client/_utils';
 import { ClientSafeProvider, getProviders, signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
 import EmailForm from '../../components/auth/EmailForm';
@@ -22,16 +23,29 @@ interface SignInProps {
 export default function SignIn(props: SignInProps) {
   const bg = useColorModeValue('white', 'gray.700');
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const inviteToken = router.query.inviteToken as string;
+
+  console.log('inviteToken received ', inviteToken);
 
   const handleOauthSignin = async (provider: string) => {
+    setLoading(true);
     try {
-      setLoading(true);
-      await signIn(provider, {
-        callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
-      });
+      await signInFunction(provider);
     } catch (error) {
+      setLoading(false);
       console.log(error);
     }
+  };
+
+  const signInFunction = async (provider: string) => {
+    return signIn(
+      provider,
+      {
+        callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
+      },
+      { inviteToken }
+    );
   };
 
   return (
@@ -59,7 +73,7 @@ export default function SignIn(props: SignInProps) {
             </Box>
           ) : (
             <Stack spacing={4}>
-              <EmailForm setLoading={setLoading} />
+              <EmailForm setLoading={setLoading} inviteToken={inviteToken} />
 
               <Center>
                 <Text>or</Text>
