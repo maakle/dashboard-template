@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
 import prisma from '../../../lib/prisma';
@@ -16,29 +17,56 @@ export default async function handler(
   switch (req.method) {
     case 'POST': {
       try {
-        const { organizationId, email } = req.body;
+        const organizationId: string = req.body.organizationId;
+        const email: string = req.body.email;
 
         const user = await prisma.user.findUnique({
           where: {
             email
-          }
+          },
+          include: { memberships: true }
         });
 
         if (user) {
-          // Add to project
-          res.status(200).json({ message: 'User added to organization' });
-        } else {
-          // Send invite to new user
-          // TODO add to invite table
-          const expiryDate = new Date();
-          expiryDate.setDate(expiryDate.getDate() + 7); // Invite expires after 7 days
+          // User exists already in organization
+          if (
+            user.memberships.some((m) => m.organizationId === organizationId)
+          ) {
+            return res.status(200).json({
+              message: "You can't add a user who has already joined."
+            });
+          }
 
+          // User does not exist in organizastion and needs to be added
+          console.log('User found, add to project');
+          await prisma.membership.create({
+            data: { organizationId, userId: user.id }
+          });
+
+          return res
+            .status(200)
+            .json({ message: 'User added to organization' });
+        } else {
+          // User needs an invite to create account and join
+          const expiresAt = new Date();
+          expiresAt.setDate(expiresAt.getDate() + 7); // Invite expires after 7 days
+          const token = nanoid();
+
+          await prisma.organizationInvite.create({
+            data: {
+              email,
+              organizationId,
+              expiresAt,
+              token
+            }
+          });
 
           sendOrganizationInvite(email);
-          res.status(200).json({ message: 'Email sent' });
+          return res.status(200).json({ message: 'Email sent' });
         }
       } catch (error) {
-        res.status(500).json({
+        console.error(error);
+        return res.status(500).json({
           error: 'Error occurred while retrieving your organization.'
         });
       }

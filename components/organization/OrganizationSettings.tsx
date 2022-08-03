@@ -15,12 +15,15 @@ import OrganizationDetails from './OrganizationDetails';
 import TeamSection from './TeamSection';
 
 const OrganizationSettings = () => {
+  const bg = useColorModeValue('gray.50', 'inherit');
+  const textColor = useColorModeValue('gray.600', 'gray.400');
+  const stackBg = useColorModeValue('white', 'gray.700');
   const { data, isLoading, isError } = useOrganization();
   if (isError) return <LoadingError />;
   if (isLoading) return <LoadingSpinner />;
 
   return (
-    <Box bg={useColorModeValue('gray.50', 'inherit')} p={10} borderRadius="lg">
+    <Box bg={bg} p={10} borderRadius="lg">
       <Box mt={[10, 0]}>
         <SimpleGrid
           display={{ base: 'initial', md: 'grid' }}
@@ -32,24 +35,14 @@ const OrganizationSettings = () => {
               <Heading fontSize="lg" fontWeight="medium" lineHeight="6">
                 Organization Information
               </Heading>
-              <Text
-                mt={1}
-                fontSize="sm"
-                color={useColorModeValue('gray.600', 'gray.400')}
-              >
+              <Text mt={1} fontSize="sm" color={textColor}>
                 You can manage your organization's information & team member
                 here.
               </Text>
             </Box>
           </GridItem>
           <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
-            <Stack
-              px={4}
-              py={5}
-              p={[null, 6]}
-              bg={useColorModeValue('white', 'gray.700')}
-              spacing={6}
-            >
+            <Stack px={4} py={5} p={[null, 6]} bg={stackBg} spacing={6}>
               <Box>
                 <OrganizationDetails organization={data} />
 

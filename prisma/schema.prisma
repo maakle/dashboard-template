@@ -67,8 +67,9 @@ model OrganizationInvite {
   id             String         @id @default(cuid())
   email          String
   organizationId String
-  role           MembershipRole
   token          String
+  expiresAt      DateTime
+  role           MembershipRole @default(MEMBER)
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
 }
@@ -79,7 +80,7 @@ model Membership {
   userId         String
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt
-  role           MembershipRole
+  role           MembershipRole @default(MEMBER)
   organization   Organization   @relation(fields: [organizationId], references: [id])
   user           User           @relation(fields: [userId], references: [id])
 

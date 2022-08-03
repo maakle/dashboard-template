@@ -2,14 +2,17 @@ import sgMail from '@sendgrid/mail';
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
-const sendEmail = (messageObject) => {
-  sgMail
-    .send(messageObject)
-    .then(() => console.log('Email Sent'))
-    .catch((error) => console.log(error));
+const sendEmail = async (
+  messageObject: sgMail.MailDataRequired | sgMail.MailDataRequired[]
+): Promise<void> => {
+  try {
+    await sgMail.send(messageObject);
+  } catch (error) {
+    return error;
+  }
 };
 
-export const sendOrganizationInvite = (email: string) => {
+export const sendOrganizationInvite = async (email: string): Promise<void> => {
   const msg = {
     to: email,
     from: {
@@ -21,6 +24,9 @@ export const sendOrganizationInvite = (email: string) => {
       link: `${process.env.NEXT_PUBLIC_DOMAIN}/auth/signin`
     }
   };
-
-  sendEmail(msg);
+  try {
+    await sendEmail(msg);
+  } catch (error) {
+    console.log(error);
+  }
 };

@@ -41,18 +41,24 @@ export default function InviteTeamMemberModal({
     onClose();
   };
 
-  const handleInvite = () => {
+  const handleInvite = async () => {
     if (emailIsValid(email)) {
       setInvalidEmail(false);
-      trigger({
-        email,
-        organizationId
-      });
-      setPlaySuccessAnimation(true);
-      setTimeout(() => {
-        setPlaySuccessAnimation(false);
-        onClose();
-      }, 2300);
+
+      try {
+        await trigger({
+          email,
+          organizationId
+        });
+        setPlaySuccessAnimation(true);
+        setTimeout(() => {
+          setPlaySuccessAnimation(false);
+          onClose();
+        }, 2300);
+      } catch (error) {
+        setInvalidEmail(true);
+        console.log(error.message);
+      }
     } else {
       setInvalidEmail(true);
     }
