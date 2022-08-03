@@ -15,6 +15,14 @@ import {
 } from '@chakra-ui/react';
 
 const NotificationSettings = () => {
+  const textColor = useColorModeValue('gray.600', 'gray.400');
+  const stackBg = useColorModeValue('white', 'gray.700');
+  const boxColor = useColorModeValue('gray.900', 'gray.50');
+  const boxColor2 = useColorModeValue('gray.50', 'gray.900');
+  const chakraLabelColor = useColorModeValue('gray.700', 'gray.50');
+  const testColor2 = useColorModeValue('gray.500', 'gray.400');
+  const radioGroupColor = useColorModeValue('gray.700', 'gray.50');
+
   return (
     <Box mt={[10, 0]}>
       <SimpleGrid
@@ -27,11 +35,7 @@ const NotificationSettings = () => {
             <Heading fontSize="lg" fontWeight="medium" lineHeight="6">
               Notifications
             </Heading>
-            <Text
-              mt={1}
-              fontSize="sm"
-              color={useColorModeValue('gray.600', 'gray.400')}
-            >
+            <Text mt={1} fontSize="sm" color={textColor}>
               Decide which communications you'd like to receive and how.
             </Text>
           </Box>
@@ -43,19 +47,9 @@ const NotificationSettings = () => {
             rounded={[null, 'md']}
             overflow={{ sm: 'hidden' }}
           >
-            <Stack
-              px={4}
-              py={5}
-              p={[null, 6]}
-              bg={useColorModeValue('white', 'gray.700')}
-              spacing={6}
-            >
+            <Stack px={4} py={5} p={[null, 6]} bg={stackBg} spacing={6}>
               <chakra.fieldset>
-                <Box
-                  as="legend"
-                  fontSize="md"
-                  color={useColorModeValue('gray.900', 'gray.50')}
-                >
+                <Box as="legend" fontSize="md" color={boxColor}>
                   By Email
                 </Box>
                 <Stack mt={4} spacing={4}>
@@ -71,11 +65,11 @@ const NotificationSettings = () => {
                       <chakra.label
                         htmlFor="comments"
                         fontWeight="md"
-                        color={useColorModeValue('gray.700', 'gray.50')}
+                        color={chakraLabelColor}
                       >
                         Comments
                       </chakra.label>
-                      <Text color={useColorModeValue('gray.500', 'gray.400')}>
+                      <Text color={testColor2}>
                         Get notified when someones posts a comment on a posting.
                       </Text>
                     </Box>
@@ -89,11 +83,11 @@ const NotificationSettings = () => {
                       <chakra.label
                         htmlFor="offers"
                         fontWeight="md"
-                        color={useColorModeValue('gray.700', 'gray.50')}
+                        color={chakraLabelColor}
                       >
                         Offers
                       </chakra.label>
-                      <Text color={useColorModeValue('gray.500', 'gray.400')}>
+                      <Text color={testColor2}>
                         Get notified when a candidate accepts or rejects an
                         offer.
                       </Text>
@@ -102,22 +96,15 @@ const NotificationSettings = () => {
                 </Stack>
               </chakra.fieldset>
               <chakra.fieldset>
-                <Box
-                  as="legend"
-                  fontSize="md"
-                  color={useColorModeValue('gray.900', 'gray.50')}
-                >
+                <Box as="legend" fontSize="md" color={boxColor}>
                   Push Notifications
-                  <Text
-                    fontSize="sm"
-                    color={useColorModeValue('gray.500', 'gray.400')}
-                  >
+                  <Text fontSize="sm" color={testColor2}>
                     These are delivered via SMS to your mobile phone.
                   </Text>
                 </Box>
                 <RadioGroup
                   fontSize="sm"
-                  color={useColorModeValue('gray.700', 'gray.50')}
+                  color={radioGroupColor}
                   colorScheme="brand"
                   mt={4}
                   defaultValue="1"
@@ -139,7 +126,7 @@ const NotificationSettings = () => {
             <Box
               px={{ base: 4, sm: 6 }}
               py={3}
-              bg={useColorModeValue('gray.50', 'gray.900')}
+              bg={boxColor2}
               textAlign="right"
             >
               <Button

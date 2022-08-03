@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { signOut } from 'next-auth/react';
 import NextLink from 'next/link';
-import { MY_APP } from '../../utils/constants.ts';
+import { MY_APP } from '../../utils/constants';
 import ThemeToggle from '../ThemeToggle';
 import MobileNav from './MobileNav';
 

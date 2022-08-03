@@ -11,6 +11,7 @@ import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
 const EmailForm = ({ setLoading }) => {
+  const textColor = useColorModeValue('gray.800', 'gray.400');
   const [email, setEmail] = useState('');
 
   const handleSubmit = async (event) => {
@@ -38,7 +39,7 @@ const EmailForm = ({ setLoading }) => {
         </Heading>
         <Text
           fontSize={{ base: 'sm', sm: 'md' }}
-          color={useColorModeValue('gray.800', 'gray.400')}
+          color={textColor}
           marginBottom={4}
         >
           Enter your email below

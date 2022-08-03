@@ -15,6 +15,10 @@ import {
 } from '@chakra-ui/react';
 
 const PersonalSettings = () => {
+  const textColor = useColorModeValue('gray.600', 'gray.400');
+  const stackBg = useColorModeValue('white', 'gray.700');
+  const formLabelColor = useColorModeValue('gray.700', 'gray.50');
+
   return (
     <Box mt={[10, 0]}>
       <SimpleGrid
@@ -27,11 +31,7 @@ const PersonalSettings = () => {
             <Heading fontSize="lg" fontWeight="medium" lineHeight="6">
               Personal Information
             </Heading>
-            <Text
-              mt={1}
-              fontSize="sm"
-              color={useColorModeValue('gray.600', 'gray.400')}
-            >
+            <Text mt={1} fontSize="sm" color={textColor}>
               Use a permanent address where you can receive mail.
             </Text>
           </Box>
@@ -43,20 +43,14 @@ const PersonalSettings = () => {
             rounded={[null, 'md']}
             overflow={{ sm: 'hidden' }}
           >
-            <Stack
-              px={4}
-              py={5}
-              p={[null, 6]}
-              bg={useColorModeValue('white', 'gray.700')}
-              spacing={6}
-            >
+            <Stack px={4} py={5} p={[null, 6]} bg={stackBg} spacing={6}>
               <SimpleGrid columns={6} spacing={6}>
                 <FormControl as={GridItem} colSpan={[6, 3]}>
                   <FormLabel
                     htmlFor="first_name"
                     fontSize="sm"
                     fontWeight="md"
-                    color={useColorModeValue('gray.700', 'gray.50')}
+                    color={formLabelColor}
                   >
                     First name
                   </FormLabel>
@@ -78,7 +72,7 @@ const PersonalSettings = () => {
                     htmlFor="last_name"
                     fontSize="sm"
                     fontWeight="md"
-                    color={useColorModeValue('gray.700', 'gray.50')}
+                    color={formLabelColor}
                   >
                     Last name
                   </FormLabel>
@@ -100,7 +94,7 @@ const PersonalSettings = () => {
                     htmlFor="email_address"
                     fontSize="sm"
                     fontWeight="md"
-                    color={useColorModeValue('gray.700', 'gray.50')}
+                    color={formLabelColor}
                   >
                     Email address
                   </FormLabel>
@@ -122,7 +116,7 @@ const PersonalSettings = () => {
                     htmlFor="country"
                     fontSize="sm"
                     fontWeight="md"
-                    color={useColorModeValue('gray.700', 'gray.50')}
+                    color={formLabelColor}
                   >
                     Country / Region
                   </FormLabel>
@@ -148,7 +142,7 @@ const PersonalSettings = () => {
                     htmlFor="street_address"
                     fontSize="sm"
                     fontWeight="md"
-                    color={useColorModeValue('gray.700', 'gray.50')}
+                    color={formLabelColor}
                   >
                     Street address
                   </FormLabel>
@@ -170,7 +164,7 @@ const PersonalSettings = () => {
                     htmlFor="city"
                     fontSize="sm"
                     fontWeight="md"
-                    color={useColorModeValue('gray.700', 'gray.50')}
+                    color={formLabelColor}
                   >
                     City
                   </FormLabel>
@@ -192,7 +186,7 @@ const PersonalSettings = () => {
                     htmlFor="state"
                     fontSize="sm"
                     fontWeight="md"
-                    color={useColorModeValue('gray.700', 'gray.50')}
+                    color={formLabelColor}
                   >
                     State / Province
                   </FormLabel>
@@ -214,7 +208,7 @@ const PersonalSettings = () => {
                     htmlFor="postal_code"
                     fontSize="sm"
                     fontWeight="md"
-                    color={useColorModeValue('gray.700', 'gray.50')}
+                    color={formLabelColor}
                   >
                     ZIP / Postal
                   </FormLabel>

@@ -20,6 +20,7 @@ interface SignInProps {
 }
 
 export default function SignIn(props: SignInProps) {
+  const bg = useColorModeValue('white', 'gray.700');
   const [loading, setLoading] = useState(false);
 
   const handleOauthSignin = async (provider: string) => {
@@ -42,12 +43,7 @@ export default function SignIn(props: SignInProps) {
             to access all features ✌️
           </Text>
         </Stack>
-        <Box
-          rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
-          boxShadow={'lg'}
-          p={8}
-        >
+        <Box rounded={'lg'} bg={bg} boxShadow={'lg'} p={8}>
           {loading ? (
             <Box>
               <Player
