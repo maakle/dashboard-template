@@ -26,7 +26,10 @@ export default function InviteTeamMemberModal({
   overlay,
   organizationId
 }) {
-  const { trigger } = useSWRMutation('/api/organization/team', sendPostRequest);
+  const { trigger } = useSWRMutation(
+    '/api/v1/organization/team',
+    sendPostRequest
+  );
   const [playSuccessAnimation, setPlaySuccessAnimation] = useState(false);
   const [email, setEmail] = useState('');
   const [invalidEmail, setInvalidEmail] = useState(false);

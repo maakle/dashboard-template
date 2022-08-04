@@ -10,7 +10,7 @@ import {
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 
-const EmailForm = ({ setLoading, inviteToken }) => {
+const EmailForm = ({ setLoading }) => {
   const textColor = useColorModeValue('gray.800', 'gray.400');
   const [email, setEmail] = useState('');
 
@@ -18,14 +18,10 @@ const EmailForm = ({ setLoading, inviteToken }) => {
     event.preventDefault();
     setLoading(true);
     try {
-      await signIn(
-        'email',
-        {
-          email,
-          callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
-        },
-        { inviteToken }
-      );
+      await signIn('email', {
+        email,
+        callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
+      });
     } catch (error) {
       console.log(error);
     }

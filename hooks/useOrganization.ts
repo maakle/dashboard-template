@@ -13,7 +13,7 @@ export function useOrganization(): {
   isLoading: boolean;
   isError: boolean;
 } {
-  const { data, error } = useSWR('/api/organization', fetchInformation);
+  const { data, error } = useSWR('/api/v1/organization', fetchInformation);
 
   return {
     data: data as OrganzationQueryType,

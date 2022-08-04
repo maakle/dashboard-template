@@ -24,9 +24,6 @@ export default function SignIn(props: SignInProps) {
   const bg = useColorModeValue('white', 'gray.700');
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  const inviteToken = router.query.inviteToken as string;
-
-  console.log('inviteToken received ', inviteToken);
 
   const handleOauthSignin = async (provider: string) => {
     setLoading(true);
@@ -39,13 +36,9 @@ export default function SignIn(props: SignInProps) {
   };
 
   const signInFunction = async (provider: string) => {
-    return signIn(
-      provider,
-      {
-        callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
-      },
-      { inviteToken }
-    );
+    return signIn(provider, {
+      callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
+    });
   };
 
   return (
@@ -73,7 +66,7 @@ export default function SignIn(props: SignInProps) {
             </Box>
           ) : (
             <Stack spacing={4}>
-              <EmailForm setLoading={setLoading} inviteToken={inviteToken} />
+              <EmailForm setLoading={setLoading} />
 
               <Center>
                 <Text>or</Text>

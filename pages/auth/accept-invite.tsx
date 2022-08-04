@@ -7,7 +7,7 @@ import { sendPostRequest } from '../../lib/sendPostRequest';
 
 export default function AcceptInvite() {
   const { trigger } = useSWRMutation(
-    '/api/organization/accept-invite',
+    '/api/v1/organization/accept-invite',
     sendPostRequest
   );
   const [loading, setLoading] = useState(true);

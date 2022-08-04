@@ -1,8 +1,8 @@
 import { nanoid } from 'nanoid';
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
-import prisma from '../../../lib/prisma';
-import { sendOrganizationInvite } from '../../../services/EmailService';
+import prisma from '../../../../lib/prisma';
+import { sendOrganizationInvite } from '../../../../services/EmailService';
 
 export default async function handler(
   req: NextApiRequest,
