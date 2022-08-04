@@ -67,8 +67,9 @@ model OrganizationInvite {
   id             String         @id @default(cuid())
   email          String
   organizationId String
-  token          String
+  token          String         @unique
   expiresAt      DateTime
+  accepted       Boolean        @default(false)
   role           MembershipRole @default(MEMBER)
   createdAt      DateTime       @default(now())
   updatedAt      DateTime       @updatedAt

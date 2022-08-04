@@ -1,6 +1,6 @@
 import { Membership, Organization, User } from '@prisma/client';
 import useSWR from 'swr';
-import fetcher from '../lib/fetcher';
+import fetchInformation from '../lib/fetchInformation';
 
 export type OrganzationQueryType = Organization & {
   memberships: (Membership & {
@@ -13,7 +13,7 @@ export function useOrganization(): {
   isLoading: boolean;
   isError: boolean;
 } {
-  const { data, error } = useSWR('/api/organization', fetcher);
+  const { data, error } = useSWR('/api/organization', fetchInformation);
 
   return {
     data: data as OrganzationQueryType,

@@ -16,7 +16,7 @@ import {
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useState } from 'react';
 import useSWRMutation from 'swr/mutation';
-import { inviteTeammember } from '../../mutations/inviteTeammember';
+import { sendPostRequest } from '../../lib/sendPostRequest';
 import { emailIsValid } from '../../utils/helper';
 
 export default function InviteTeamMemberModal({
@@ -26,10 +26,7 @@ export default function InviteTeamMemberModal({
   overlay,
   organizationId
 }) {
-  const { trigger } = useSWRMutation(
-    '/api/organization/team',
-    inviteTeammember
-  );
+  const { trigger } = useSWRMutation('/api/organization/team', sendPostRequest);
   const [playSuccessAnimation, setPlaySuccessAnimation] = useState(false);
   const [email, setEmail] = useState('');
   const [invalidEmail, setInvalidEmail] = useState(false);

@@ -10,7 +10,7 @@ import {
 import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
 import { OrganzationQueryType } from '../../hooks/useOrganization';
-import { updateOrganization } from '../../mutations/updateOrganization';
+import { sendPatchRequest } from '../../lib/sendPatchRequest';
 
 export default function OrganizationDetails({
   organization
@@ -23,7 +23,7 @@ export default function OrganizationDetails({
     formState: { errors, isSubmitting }
   } = useForm();
 
-  const { trigger } = useSWRMutation('/api/organization', updateOrganization);
+  const { trigger } = useSWRMutation('/api/organization', sendPatchRequest);
 
   const onSubmit = async (values: any) => {
     trigger({

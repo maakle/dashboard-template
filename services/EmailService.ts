@@ -24,7 +24,7 @@ export const sendOrganizationInvite = async (
     },
     templateId: 'd-2f01c426fda24f36854279d7199c6cfd',
     dynamicTemplateData: {
-      link: `${process.env.NEXT_PUBLIC_DOMAIN}/auth/signin?inviteToken=${inviteToken}`
+      link: `${process.env.NEXT_PUBLIC_DOMAIN}/auth/accept-invite?inviteToken=${inviteToken}`
     }
   };
   try {
