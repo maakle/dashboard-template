@@ -26,8 +26,6 @@ export default function OrganizationDetails({
   const { trigger } = useSWRMutation('/api/v1/organization', sendPatchRequest);
 
   const onSubmit = async (values: any) => {
-    console.log('EEEE On submit called ');
-
     trigger({
       organizationId: organization.id,
       name: values.organizationName
