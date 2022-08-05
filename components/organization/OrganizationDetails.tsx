@@ -12,11 +12,13 @@ import useSWRMutation from 'swr/mutation';
 import { OrganzationQueryType } from '../../hooks/useOrganization';
 import { sendPatchRequest } from '../../lib/sendPatchRequest';
 
-export default function OrganizationDetails({
-  organization,
-}: {
+export interface IOrganizationDetails {
   organization: OrganzationQueryType;
-}) {
+}
+
+const OrganizationDetails: React.FC<IOrganizationDetails> = ({
+  organization,
+}) => {
   const {
     handleSubmit,
     register,
@@ -83,4 +85,6 @@ export default function OrganizationDetails({
       </FormControl>
     </chakra.form>
   );
-}
+};
+
+export default OrganizationDetails;

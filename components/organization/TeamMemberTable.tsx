@@ -11,11 +11,11 @@ import {
 import { OrganzationQueryType } from '../../hooks/useOrganization';
 import { capitalizeFirstLetter } from '../../utils/helper';
 
-const TeamMemberTable = ({
-  organization,
-}: {
+export interface ITeamMemberTable {
   organization: OrganzationQueryType;
-}) => {
+}
+
+const TeamMemberTable: React.FC<ITeamMemberTable> = ({ organization }) => {
   return (
     <TableContainer>
       <Table variant="simple">

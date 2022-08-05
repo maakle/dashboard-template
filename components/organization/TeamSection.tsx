@@ -5,11 +5,11 @@ import BlurryOverlay from '../common/BlurryOverlay';
 import InviteTeamMemberModal from '../modals/InviteTeamMemberModal';
 import TeamMemberTable from './TeamMemberTable';
 
-export default function TeamSection({
-  organization,
-}: {
+export interface ITeamSection {
   organization: OrganzationQueryType;
-}) {
+}
+
+const TeamSection: React.FC<ITeamSection> = ({ organization }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [overlay, setOverlay] = React.useState(<BlurryOverlay />);
 
@@ -50,4 +50,6 @@ export default function TeamSection({
       <TeamMemberTable organization={organization} />
     </>
   );
-}
+};
+
+export default TeamSection;

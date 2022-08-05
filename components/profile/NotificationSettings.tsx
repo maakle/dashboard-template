@@ -14,7 +14,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-const NotificationSettings = () => {
+const NotificationSettings: React.FC = () => {
   const textColor = useColorModeValue('gray.600', 'gray.400');
   const stackBg = useColorModeValue('white', 'gray.700');
   const boxColor = useColorModeValue('gray.900', 'gray.50');

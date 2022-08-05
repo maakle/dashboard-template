@@ -1,6 +1,6 @@
+import debounce from 'lodash.debounce';
 import Router from 'next/router';
 import nprogress from 'nprogress';
-import debounce from 'lodash.debounce';
 
 // Only show nprogress after 500ms (slow loading)
 const start = debounce(nprogress.start, 500);
@@ -18,7 +18,7 @@ Router.events.on('routeChangeError', () => {
   nprogress.done();
 });
 
-export default function Nprogress() {
+const NProgress: React.FC = () => {
   return (
     <style jsx global>
       {`
@@ -54,4 +54,6 @@ export default function Nprogress() {
       `}
     </style>
   );
-}
+};
+
+export default NProgress;

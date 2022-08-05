@@ -14,7 +14,7 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 
-const PersonalSettings = () => {
+const PersonalSettings: React.FC = () => {
   const textColor = useColorModeValue('gray.600', 'gray.400');
   const stackBg = useColorModeValue('white', 'gray.700');
   const formLabelColor = useColorModeValue('gray.700', 'gray.50');

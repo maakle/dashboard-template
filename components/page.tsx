@@ -1,7 +1,11 @@
 import { Flex, useColorModeValue } from '@chakra-ui/react';
 import Header from './Header';
 
-export default function Page({ children }) {
+export interface IPage {
+  children: any;
+}
+
+const Page: React.FC<IPage> = ({ children }) => {
   const bgColor = useColorModeValue('white', 'gray.900');
   const primarytextColor = useColorModeValue('black', 'white');
 
@@ -35,4 +39,6 @@ export default function Page({ children }) {
       </Flex>
     </>
   );
-}
+};
+
+export default Page;

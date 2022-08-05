@@ -2,7 +2,7 @@ import { ChakraProvider, CSSReset } from '@chakra-ui/react';
 import { SessionProvider } from 'next-auth/react';
 import AuthGuard from '../components/auth/AuthGuard';
 import theme from '../components/design-system';
-import Nprogress from '../components/NProgress';
+import NProgress from '../components/NProgress';
 import DefaultLayout from '../layouts/default';
 
 const App = ({ Component, pageProps: { session, ...pageProps } }) => {
@@ -13,7 +13,7 @@ const App = ({ Component, pageProps: { session, ...pageProps } }) => {
     <ChakraProvider theme={theme}>
       <SessionProvider session={session}>
         <CSSReset />
-        <Nprogress />
+        <NProgress />
 
         {Component.auth ? (
           <AuthGuard>{getLayout(<Component {...pageProps} />)}</AuthGuard>

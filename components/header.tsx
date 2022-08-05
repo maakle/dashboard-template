@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import { MY_APP } from '../utils/constants';
 import ThemeToggle from './ThemeToggle';
 
-export default function Header() {
+const Header: React.FC = () => {
   const bgColor = useColorModeValue('white', 'gray.900');
 
   return (
@@ -56,4 +56,6 @@ export default function Header() {
       </Flex>
     </Flex>
   );
-}
+};
+
+export default Header;

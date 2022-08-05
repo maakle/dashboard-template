@@ -14,7 +14,7 @@ import LoadingSpinner from '../common/LoadingSpinner';
 import OrganizationDetails from './OrganizationDetails';
 import TeamSection from './TeamSection';
 
-const OrganizationSettings = () => {
+const OrganizationSettings: React.FC = () => {
   const bg = useColorModeValue('gray.50', 'inherit');
   const textColor = useColorModeValue('gray.600', 'gray.400');
   const stackBg = useColorModeValue('white', 'gray.700');

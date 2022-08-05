@@ -2,7 +2,7 @@ import { Box, Divider, useColorModeValue } from '@chakra-ui/react';
 import NotificationSettings from './NotificationSettings';
 import PersonalSettings from './PersonalSettings';
 
-const ProfileSettings = () => {
+const ProfileSettings: React.FC = () => {
   const bg = useColorModeValue('gray.50', 'inherit');
 
   return (
