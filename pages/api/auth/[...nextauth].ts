@@ -1,11 +1,11 @@
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import { Organization } from '@prisma/client';
 import type { NextAuthOptions } from 'next-auth';
 import NextAuth from 'next-auth';
 import EmailProvider from 'next-auth/providers/email';
 import GithubProvider from 'next-auth/providers/github';
 import GoogleProvider from 'next-auth/providers/google';
 import prisma from '../../../lib/prisma';
+import { createDefaultOrganizationForUser } from '../../../services/OrganizationService';
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
@@ -42,17 +42,8 @@ export const authOptions: NextAuthOptions = {
   },
   events: {
     createUser: async ({ user }) => {
-      // Creates a default organization & membership for the user upon signup
-      const organization: Organization = await prisma.organization.create({
-        data: { name: 'Default Organization' }
-      });
-      await prisma.membership.create({
-        data: {
-          userId: user.id,
-          organizationId: organization.id,
-          role: 'OWNER'
-        }
-      });
+      // Check if user has an org invite, if not create default Org
+      await createDefaultOrganizationForUser(user);
     }
   }
 };

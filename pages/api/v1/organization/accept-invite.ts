@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
-import prisma from '../../../../lib/prisma';
+import { acceptInviteToOrganization } from '../../../../services/OrganizationService';
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
@@ -13,39 +13,7 @@ export default async function handler(
 
   switch (req.method) {
     case 'POST': {
-      const { inviteToken } = req.body;
-
-      try {
-        const orgInvite = await prisma.organizationInvite.findUnique({
-          where: {
-            token: inviteToken
-          }
-        });
-
-        if (orgInvite && orgInvite.expiresAt > new Date()) {
-          await prisma.organizationInvite.update({
-            where: { id: orgInvite.id },
-            data: {
-              accepted: true
-            }
-          });
-          return res.status(200).json({
-            success: true,
-            message: 'Invite accepted'
-          });
-        } else {
-          return res.status(404).json({
-            success: false,
-            message: "Couldn't find invite or it's expired"
-          });
-        }
-      } catch (error) {
-        console.log(error);
-        return res.status(500).json({
-          success: false,
-          message: 'Something went wrong'
-        });
-      }
+      acceptInviteToOrganization(req, res);
     }
   }
 }
