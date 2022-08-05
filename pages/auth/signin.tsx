@@ -9,21 +9,14 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import { Player } from '@lottiefiles/react-lottie-player';
-import { CtxOrReq } from 'next-auth/client/_utils';
-import { ClientSafeProvider, getProviders, signIn } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { signIn } from 'next-auth/react';
 import { useState } from 'react';
 import { BsGithub, BsGoogle } from 'react-icons/bs';
 import EmailForm from '../../components/auth/EmailForm';
 
-interface SignInProps {
-  providers: ClientSafeProvider[];
-}
-
-export default function SignIn(props: SignInProps) {
+export default function SignIn() {
   const bg = useColorModeValue('white', 'gray.700');
   const [loading, setLoading] = useState(false);
-  const router = useRouter();
 
   const handleOauthSignin = async (provider: string) => {
     setLoading(true);
@@ -95,14 +88,4 @@ export default function SignIn(props: SignInProps) {
       </Stack>
     </Flex>
   );
-}
-
-export async function getServerSideProps(context: CtxOrReq) {
-  const providers = await getProviders();
-
-  return {
-    props: {
-      providers
-    }
-  };
 }

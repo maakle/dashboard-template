@@ -21,7 +21,6 @@ import { emailIsValid } from '../../utils/helper';
 
 export default function InviteTeamMemberModal({
   isOpen,
-  onOpen,
   onClose,
   overlay,
   organizationId

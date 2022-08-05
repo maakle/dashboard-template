@@ -41,7 +41,6 @@ export default function TeamSection({
 
         <InviteTeamMemberModal
           isOpen={isOpen}
-          onOpen={onOpen}
           onClose={onClose}
           overlay={overlay}
           organizationId={organization.id}

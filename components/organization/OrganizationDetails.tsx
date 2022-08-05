@@ -20,7 +20,7 @@ export default function OrganizationDetails({
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting }
+    formState: { errors }
   } = useForm();
 
   const { trigger } = useSWRMutation('/api/v1/organization', sendPatchRequest);

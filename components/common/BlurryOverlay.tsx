@@ -1,6 +1,6 @@
 import { ModalOverlay } from '@chakra-ui/react';
 
-export default function BlurryOverlay(): JSX.Element {
+export default function BlurryOverlay() {
   return (
     <ModalOverlay
       bg="blackAlpha.300"
