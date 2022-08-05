@@ -6,7 +6,7 @@ import {
   Heading,
   Stack,
   Text,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { signIn } from 'next-auth/react';
@@ -30,7 +30,7 @@ export default function SignIn() {
 
   const signInFunction = async (provider: string) => {
     return signIn(provider, {
-      callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
+      callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`,
     });
   };
 

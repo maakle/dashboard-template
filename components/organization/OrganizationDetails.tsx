@@ -5,7 +5,7 @@ import {
   FormControl,
   FormErrorMessage,
   Heading,
-  Input
+  Input,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import useSWRMutation from 'swr/mutation';
@@ -13,14 +13,14 @@ import { OrganzationQueryType } from '../../hooks/useOrganization';
 import { sendPatchRequest } from '../../lib/sendPatchRequest';
 
 export default function OrganizationDetails({
-  organization
+  organization,
 }: {
   organization: OrganzationQueryType;
 }) {
   const {
     handleSubmit,
     register,
-    formState: { errors }
+    formState: { errors },
   } = useForm();
 
   const { trigger } = useSWRMutation('/api/v1/organization', sendPatchRequest);
@@ -28,7 +28,7 @@ export default function OrganizationDetails({
   const onSubmit = async (values: any) => {
     trigger({
       organizationId: organization.id,
-      name: values.organizationName
+      name: values.organizationName,
     });
   };
 
@@ -58,7 +58,7 @@ export default function OrganizationDetails({
           {...register('organizationName', {
             required: 'Please enter an organization name',
             minLength: { value: 3, message: 'Organization name is too short' },
-            maxLength: { value: 50, message: 'Organization name is too long' }
+            maxLength: { value: 50, message: 'Organization name is too long' },
           })}
         />
         <FormErrorMessage>
@@ -73,7 +73,7 @@ export default function OrganizationDetails({
             _hover={{ bg: 'gray.700' }}
             _active={{
               bg: 'gray.800',
-              transform: 'scale(0.95)'
+              transform: 'scale(0.95)',
             }}
             type="submit"
           >

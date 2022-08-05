@@ -22,7 +22,7 @@ export const baseSizes = {
   '48': '12rem',
   '56': '14rem',
   '64': '16rem',
-  '72': '18rem'
+  '72': '18rem',
 };
 
 const largeSizes = {
@@ -39,7 +39,7 @@ const largeSizes = {
   '7xl': '80rem',
   '8xl': '88rem',
   full: '100%',
-  screen: '100vh'
+  screen: '100vh',
 };
 
 const percentageSizes = {
@@ -68,21 +68,21 @@ const percentageSizes = {
   '8/12': '66.666667%',
   '9/12': '75%',
   '10/12': '83.333333%',
-  '11/12': '91.666667%'
+  '11/12': '91.666667%',
 };
 
 const container = {
   sm: '640px',
   md: '768px',
   lg: '1024px',
-  xl: '1280px'
+  xl: '1280px',
 };
 
 const sizes = {
   ...baseSizes,
   ...largeSizes,
   ...percentageSizes,
-  container
+  container,
 };
 
 export default sizes;

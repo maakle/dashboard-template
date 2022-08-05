@@ -9,7 +9,7 @@ export default async function handler(
   await NextCors(req, res, {
     methods: ['GET', 'POST', 'DELETE'],
     origin: '*',
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 200,
   });
 
   switch (req.method) {

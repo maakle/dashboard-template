@@ -5,7 +5,7 @@ import {
   Input,
   Stack,
   Text,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { signIn } from 'next-auth/react';
 import { useState } from 'react';
@@ -20,7 +20,7 @@ const EmailForm = ({ setLoading }) => {
     try {
       await signIn('email', {
         email,
-        callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`
+        callbackUrl: `${process.env.NEXT_PUBLIC_DOMAIN}/dashboard`,
       });
     } catch (error) {
       console.log(error);
@@ -58,7 +58,7 @@ const EmailForm = ({ setLoading }) => {
             bg={'blue.400'}
             color={'white'}
             _hover={{
-              bg: 'blue.500'
+              bg: 'blue.500',
             }}
             type="submit"
           >

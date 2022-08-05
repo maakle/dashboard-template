@@ -6,7 +6,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { useOrganization } from '../../hooks/useOrganization';
 import LoadingError from '../common/LoadingError';

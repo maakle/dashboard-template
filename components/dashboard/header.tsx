@@ -9,7 +9,7 @@ import {
   MenuItem,
   MenuList,
   Stack,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 import { signOut } from 'next-auth/react';
 import NextLink from 'next/link';

@@ -6,7 +6,7 @@ import InviteTeamMemberModal from '../modals/InviteTeamMemberModal';
 import TeamMemberTable from './TeamMemberTable';
 
 export default function TeamSection({
-  organization
+  organization,
 }: {
   organization: OrganzationQueryType;
 }) {
@@ -29,7 +29,7 @@ export default function TeamSection({
           _hover={{ bg: 'gray.700' }}
           _active={{
             bg: 'gray.800',
-            transform: 'scale(0.95)'
+            transform: 'scale(0.95)',
           }}
           onClick={() => {
             setOverlay(<BlurryOverlay />);

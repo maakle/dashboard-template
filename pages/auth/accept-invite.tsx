@@ -21,7 +21,7 @@ export default function AcceptInvite() {
     if (inviteToken) {
       try {
         await trigger({
-          inviteToken
+          inviteToken,
         });
         router.push('/auth/signin');
       } catch (error) {

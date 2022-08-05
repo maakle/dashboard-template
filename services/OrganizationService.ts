@@ -10,14 +10,14 @@ export const createDefaultOrganizationForUser = async (
 ): Promise<void> => {
   try {
     const organization: Organization = await prisma.organization.create({
-      data: { name: 'Default Organization' }
+      data: { name: 'Default Organization' },
     });
     await prisma.membership.create({
       data: {
         userId: user.id,
         organizationId: organization.id,
-        role: 'OWNER'
-      }
+        role: 'OWNER',
+      },
     });
   } catch (error) {
     console.error(error);
@@ -34,13 +34,13 @@ export const getOrganization = async (
     const membership = session.user.memberships[0];
     const organization = await prisma.organization.findUnique({
       where: { id: membership.organizationId },
-      include: { memberships: { include: { user: true } } }
+      include: { memberships: { include: { user: true } } },
     });
 
     return res.status(200).json(organization);
   } catch (error) {
     return res.status(500).json({
-      error: 'Error occurred while retrieving your organization.'
+      error: 'Error occurred while retrieving your organization.',
     });
   }
 };
@@ -54,8 +54,8 @@ export const editOrganization = async (
     const newOrganization = await prisma.organization.update({
       where: { id: organizationId },
       data: {
-        name: name
-      }
+        name: name,
+      },
     });
     return res.status(200).json(newOrganization);
   } catch (error) {
@@ -75,9 +75,9 @@ export const inviteUserToOrganization = async (
 
     const user = await prisma.user.findUnique({
       where: {
-        email
+        email,
       },
-      include: { memberships: true }
+      include: { memberships: true },
     });
 
     if (user) {
@@ -87,13 +87,13 @@ export const inviteUserToOrganization = async (
       );
       if (userExistsInOrg) {
         return res.status(200).json({
-          message: "You can't add a user who has already joined."
+          message: "You can't add a user who has already joined.",
         });
       } else {
         // User does not exist in organizastion and can be added
         // TODO, maybe send first invite and only after acceptance add
         await prisma.membership.create({
-          data: { organizationId, userId: user.id }
+          data: { organizationId, userId: user.id },
         });
 
         return res.status(200).json({ message: 'User added to organization' });
@@ -109,8 +109,8 @@ export const inviteUserToOrganization = async (
           email,
           organizationId,
           expiresAt,
-          token
-        }
+          token,
+        },
       });
 
       sendOrganizationInvite(email, token);
@@ -119,7 +119,7 @@ export const inviteUserToOrganization = async (
   } catch (error) {
     console.error(error);
     return res.status(500).json({
-      error: 'Error occurred while retrieving your organization.'
+      error: 'Error occurred while retrieving your organization.',
     });
   }
 };
@@ -133,32 +133,32 @@ export const acceptInviteToOrganization = async (
   try {
     const orgInvite = await prisma.organizationInvite.findUnique({
       where: {
-        token: inviteToken
-      }
+        token: inviteToken,
+      },
     });
 
     if (orgInvite && orgInvite.expiresAt > new Date()) {
       await prisma.organizationInvite.update({
         where: { id: orgInvite.id },
         data: {
-          accepted: true
-        }
+          accepted: true,
+        },
       });
       return res.status(200).json({
         success: true,
-        message: 'Invite accepted'
+        message: 'Invite accepted',
       });
     } else {
       return res.status(404).json({
         success: false,
-        message: "Couldn't find invite or it's expired"
+        message: "Couldn't find invite or it's expired",
       });
     }
   } catch (error) {
     console.log(error);
     return res.status(500).json({
       success: false,
-      message: 'Something went wrong'
+      message: 'Something went wrong',
     });
   }
 };

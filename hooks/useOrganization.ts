@@ -18,6 +18,6 @@ export function useOrganization(): {
   return {
     data: data as OrganzationQueryType,
     isLoading: !error && !data,
-    isError: error
+    isError: error,
   };
 }

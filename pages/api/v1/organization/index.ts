@@ -3,7 +3,7 @@ import { unstable_getServerSession } from 'next-auth';
 import NextCors from 'nextjs-cors';
 import {
   editOrganization,
-  getOrganization
+  getOrganization,
 } from '../../../../services/OrganizationService';
 import { authOptions } from '../../auth/[...nextauth]';
 
@@ -14,7 +14,7 @@ export default async function handler(
   await NextCors(req, res, {
     methods: ['GET', 'PATCH'],
     origin: '*',
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 200,
   });
 
   switch (req.method) {

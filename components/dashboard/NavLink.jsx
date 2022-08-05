@@ -59,12 +59,12 @@ export const NavLink = forwardRef(({ href, ...props }, ref) => {
           aria-current={isActive ? 'page' : undefined}
           _hover={{
             color: hoverColor,
-            bg: hoverBg
+            bg: hoverBg,
           }}
           {...(isActive && {
             bg: activeBg,
             color: activeColor,
-            _hover: {}
+            _hover: {},
           })}
           {...props}
         />

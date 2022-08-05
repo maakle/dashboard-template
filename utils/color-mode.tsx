@@ -17,6 +17,6 @@ export default function useColorMode() {
     toggleColorMode: toggle,
     isDarkMode,
     isLightMode,
-    newColorMode
+    newColorMode,
   };
 }

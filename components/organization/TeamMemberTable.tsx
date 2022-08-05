@@ -6,13 +6,13 @@ import {
   Td,
   Th,
   Thead,
-  Tr
+  Tr,
 } from '@chakra-ui/react';
 import { OrganzationQueryType } from '../../hooks/useOrganization';
 import { capitalizeFirstLetter } from '../../utils/helper';
 
 const TeamMemberTable = ({
-  organization
+  organization,
 }: {
   organization: OrganzationQueryType;
 }) => {

@@ -11,7 +11,7 @@ import {
   SimpleGrid,
   Stack,
   Text,
-  useColorModeValue
+  useColorModeValue,
 } from '@chakra-ui/react';
 
 const PersonalSettings = () => {
@@ -234,7 +234,7 @@ const PersonalSettings = () => {
                 _hover={{ bg: 'gray.700' }}
                 _active={{
                   bg: 'gray.800',
-                  transform: 'scale(0.95)'
+                  transform: 'scale(0.95)',
                 }}
               >
                 Save

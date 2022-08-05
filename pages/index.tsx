@@ -26,7 +26,7 @@ const Home = () => {
         _hover={{ bg: 'gray.700' }}
         _active={{
           bg: 'gray.800',
-          transform: 'scale(0.95)'
+          transform: 'scale(0.95)',
         }}
       >
         View Dashboard

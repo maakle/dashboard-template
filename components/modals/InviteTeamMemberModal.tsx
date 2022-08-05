@@ -11,7 +11,7 @@ import {
   ModalContent,
   ModalFooter,
   ModalHeader,
-  Text
+  Text,
 } from '@chakra-ui/react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useState } from 'react';
@@ -23,7 +23,7 @@ export default function InviteTeamMemberModal({
   isOpen,
   onClose,
   overlay,
-  organizationId
+  organizationId,
 }) {
   const { trigger } = useSWRMutation(
     '/api/v1/organization/team',
@@ -47,7 +47,7 @@ export default function InviteTeamMemberModal({
       try {
         await trigger({
           email,
-          organizationId
+          organizationId,
         });
         setPlaySuccessAnimation(true);
         setTimeout(() => {
@@ -128,7 +128,7 @@ export default function InviteTeamMemberModal({
                 _hover={{ bg: 'gray.700' }}
                 _active={{
                   bg: 'gray.800',
-                  transform: 'scale(0.95)'
+                  transform: 'scale(0.95)',
                 }}
                 type="button"
                 onClick={() => handleInvite()}

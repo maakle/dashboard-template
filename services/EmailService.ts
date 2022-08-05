@@ -20,12 +20,12 @@ export const sendOrganizationInvite = async (
     to: email,
     from: {
       email: process.env.EMAIL_FROM,
-      name: process.env.EMAIL_NAME
+      name: process.env.EMAIL_NAME,
     },
     templateId: 'd-2f01c426fda24f36854279d7199c6cfd',
     dynamicTemplateData: {
-      link: `${process.env.NEXT_PUBLIC_DOMAIN}/auth/accept-invite?inviteToken=${inviteToken}`
-    }
+      link: `${process.env.NEXT_PUBLIC_DOMAIN}/auth/accept-invite?inviteToken=${inviteToken}`,
+    },
   };
   try {
     await sendEmail(msg);
