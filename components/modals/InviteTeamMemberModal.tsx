@@ -19,12 +19,19 @@ import useSWRMutation from 'swr/mutation';
 import { sendPostRequest } from '../../lib/sendPostRequest';
 import { emailIsValid } from '../../utils/helper';
 
-export default function InviteTeamMemberModal({
+export interface IInviteTeamMemberModal {
+  isOpen: boolean;
+  onClose: () => void;
+  overlay: React.ReactNode;
+  organizationId: string;
+}
+
+const InviteTeamMemberModal: React.FC<IInviteTeamMemberModal> = ({
   isOpen,
   onClose,
   overlay,
   organizationId,
-}) {
+}) => {
   const { trigger } = useSWRMutation(
     '/api/v1/organization/team',
     sendPostRequest
@@ -141,4 +148,6 @@ export default function InviteTeamMemberModal({
       </ModalContent>
     </Modal>
   );
-}
+};
+
+export default InviteTeamMemberModal;

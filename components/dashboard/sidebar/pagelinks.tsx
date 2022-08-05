@@ -2,7 +2,7 @@ import { VStack } from '@chakra-ui/react';
 import { Folder, Home, Settings } from '../../icons';
 import SidebarLink from './SidebarLink';
 
-const PageLinks = () => {
+const PageLinks: React.FC = () => {
   return (
     <VStack w="full" spacing={1}>
       <SidebarLink href="/dashboard" icon={Home}>

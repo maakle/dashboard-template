@@ -17,7 +17,7 @@ import { MY_APP } from '../../utils/constants';
 import ThemeToggle from '../ThemeToggle';
 import MobileNav from './MobileNav';
 
-export default function Header() {
+const Header: React.FC = () => {
   const bgColor = useColorModeValue('white', 'gray.800');
   const [isSmallScreen] = useMediaQuery('(max-width: 768px)');
 
@@ -94,4 +94,6 @@ export default function Header() {
       </Flex>
     </Flex>
   );
-}
+};
+
+export default Header;

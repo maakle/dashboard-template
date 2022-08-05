@@ -4,7 +4,7 @@ import { LogoMark, LogoOnDark } from '../../icons';
 import SidebarContainer from './Container';
 import PageLinks from './PageLinks';
 
-export default function Sidebar(props) {
+const Sidebar = (props) => {
   const bgColor = useColorModeValue('white', 'gray.800');
 
   return (
@@ -45,4 +45,6 @@ export default function Sidebar(props) {
       </VStack>
     </SidebarContainer>
   );
-}
+};
+
+export default Sidebar;

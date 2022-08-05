@@ -10,7 +10,7 @@ import React from 'react';
 import { Menu } from '../icons';
 import Sidebar from './sidebar';
 
-export default function MobileNav() {
+const MobileNav: React.FC = () => {
   const { isOpen, onToggle, onClose } = useDisclosure();
   const btnRef = React.useRef();
 
@@ -40,4 +40,6 @@ export default function MobileNav() {
       </Drawer>
     </>
   );
-}
+};
+
+export default MobileNav;

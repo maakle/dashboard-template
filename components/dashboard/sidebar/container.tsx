@@ -1,6 +1,6 @@
 import { Box } from '@chakra-ui/react';
 
-function SidebarContainer(props) {
+const SidebarContainer = (props) => {
   return (
     <Box
       as="aside"
@@ -12,6 +12,6 @@ function SidebarContainer(props) {
       {...props}
     />
   );
-}
+};
 
 export default SidebarContainer;

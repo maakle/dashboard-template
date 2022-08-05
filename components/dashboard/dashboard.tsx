@@ -2,7 +2,11 @@ import { Box, Flex, useColorModeValue, useMediaQuery } from '@chakra-ui/react';
 import Header from './Header';
 import Sidebar from './sidebar';
 
-const Dashboard = ({ children }) => {
+export interface IDashboard {
+  children: any;
+}
+
+const Dashboard: React.FC<IDashboard> = ({ children }) => {
   const bgColor = useColorModeValue('white', 'gray.800');
   const [isSmallScreen] = useMediaQuery('(max-width: 768px)');
 
