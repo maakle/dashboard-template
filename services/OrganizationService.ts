@@ -1,9 +1,8 @@
 import { Organization } from '@prisma/client';
 import { nanoid } from 'nanoid';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { unstable_getServerSession, User } from 'next-auth';
+import { Session, User } from 'next-auth';
 import prisma from '../lib/prisma';
-import { authOptions } from '../pages/api/auth/[...nextauth]';
 import { sendOrganizationInvite } from './EmailService';
 
 export const createDefaultOrganizationForUser = async (
@@ -27,10 +26,10 @@ export const createDefaultOrganizationForUser = async (
 
 export const getOrganization = async (
   req: NextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse,
+  session: Session
 ) => {
   try {
-    const session = await unstable_getServerSession(req, res, authOptions);
     // TODO: Implement feature for active organization. Now just pick the top
     const membership = session.user.memberships[0];
     const organization = await prisma.organization.findUnique({

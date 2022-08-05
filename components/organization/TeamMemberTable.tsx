@@ -27,17 +27,18 @@ const TeamMemberTable = ({
           </Tr>
         </Thead>
         <Tbody>
-          {organization.memberships.map((member) => (
-            <Tr key={member.id}>
-              <Td>{member.user.name}</Td>
-              <Td>{capitalizeFirstLetter(member.role)}</Td>
-              <Td>
-                <Button colorScheme="red" size="xs">
-                  Remove
-                </Button>
-              </Td>
-            </Tr>
-          ))}
+          {!!organization &&
+            organization.memberships.map((member) => (
+              <Tr key={member.id}>
+                <Td>{member.user.name}</Td>
+                <Td>{capitalizeFirstLetter(member.role)}</Td>
+                <Td>
+                  <Button colorScheme="red" size="xs">
+                    Remove
+                  </Button>
+                </Td>
+              </Tr>
+            ))}
         </Tbody>
       </Table>
     </TableContainer>

@@ -1,9 +1,11 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import { unstable_getServerSession } from 'next-auth';
 import NextCors from 'nextjs-cors';
 import {
   editOrganization,
   getOrganization
 } from '../../../../services/OrganizationService';
+import { authOptions } from '../../auth/[...nextauth]';
 
 export default async function handler(
   req: NextApiRequest,
@@ -17,11 +19,12 @@ export default async function handler(
 
   switch (req.method) {
     case 'GET': {
-      getOrganization(req, res);
+      const session = await unstable_getServerSession(req, res, authOptions);
+      return getOrganization(req, res, session);
     }
 
     case 'PATCH': {
-      editOrganization(req, res);
+      return editOrganization(req, res);
     }
   }
 }

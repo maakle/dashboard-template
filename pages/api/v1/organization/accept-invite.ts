@@ -13,7 +13,7 @@ export default async function handler(
 
   switch (req.method) {
     case 'POST': {
-      acceptInviteToOrganization(req, res);
+      return acceptInviteToOrganization(req, res);
     }
   }
 }

@@ -1,7 +1,7 @@
 import { Box, Flex, Stack, Text } from '@chakra-ui/react';
 import { Player } from '@lottiefiles/react-lottie-player';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import useSWRMutation from 'swr/mutation';
 import { sendPostRequest } from '../../lib/sendPostRequest';
 
@@ -15,7 +15,7 @@ export default function AcceptInvite() {
   const router = useRouter();
   const inviteToken = router.query.inviteToken as string;
 
-  const handleAcceptInvite = async () => {
+  const handleAcceptInvite = useCallback(async () => {
     setLoading(true);
     setErrorMessage('');
     if (inviteToken) {
@@ -33,11 +33,11 @@ export default function AcceptInvite() {
       setLoading(false);
       setErrorMessage('No invite token provided');
     }
-  };
+  }, [inviteToken, router, trigger]);
 
   useEffect(() => {
     handleAcceptInvite();
-  }, [inviteToken]);
+  }, [handleAcceptInvite, inviteToken]);
 
   return (
     <Flex align="center" justify="center">

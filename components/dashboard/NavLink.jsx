@@ -43,6 +43,7 @@ export const A = forwardRef(({ children, icon, ...props }, ref) => {
     </Flex>
   );
 });
+A.displayName = 'A';
 
 export const NavLink = forwardRef(({ href, ...props }, ref) => {
   const hoverColor = useColorModeValue('gray.900', 'white');
@@ -71,3 +72,4 @@ export const NavLink = forwardRef(({ href, ...props }, ref) => {
     </InternalLink>
   );
 });
+NavLink.displayName = 'NavLink';

@@ -36,7 +36,7 @@ const NotificationSettings = () => {
               Notifications
             </Heading>
             <Text mt={1} fontSize="sm" color={textColor}>
-              Decide which communications you'd like to receive and how.
+              Decide which communications you&apos;d like to receive and how.
             </Text>
           </Box>
         </GridItem>

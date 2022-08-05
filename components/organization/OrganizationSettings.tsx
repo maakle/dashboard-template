@@ -36,8 +36,8 @@ const OrganizationSettings = () => {
                 Organization Information
               </Heading>
               <Text mt={1} fontSize="sm" color={textColor}>
-                You can manage your organization's information & team member
-                here.
+                You can manage your organization&apos;s information & team
+                member here.
               </Text>
             </Box>
           </GridItem>
