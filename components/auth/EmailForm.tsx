@@ -8,9 +8,13 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { signIn } from 'next-auth/react';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 
-const EmailForm = ({ setLoading }) => {
+export interface IEmailForm {
+  setLoading: Dispatch<SetStateAction<boolean>>;
+}
+
+const EmailForm: React.FC<IEmailForm> = ({ setLoading }) => {
   const textColor = useColorModeValue('gray.800', 'gray.400');
   const [email, setEmail] = useState('');
 

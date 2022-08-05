@@ -2,7 +2,11 @@ import { Box, Flex, Spinner } from '@chakra-ui/react';
 import { signIn, useSession } from 'next-auth/react';
 import React from 'react';
 
-const AuthGuard = ({ children }) => {
+export interface IAuthGuard {
+  children: any;
+}
+
+const AuthGuard: React.FC<IAuthGuard> = ({ children }) => {
   const { data: session, status } = useSession();
   const isUser = !!session?.user;
   React.useEffect(() => {

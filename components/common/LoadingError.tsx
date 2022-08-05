@@ -1,7 +1,7 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 import { Player } from '@lottiefiles/react-lottie-player';
 
-export default function LoadingError() {
+const LoadingError: React.FC = () => {
   return (
     <Flex height="100%">
       <Box margin="auto">
@@ -18,4 +18,6 @@ export default function LoadingError() {
       </Box>
     </Flex>
   );
-}
+};
+
+export default LoadingError;

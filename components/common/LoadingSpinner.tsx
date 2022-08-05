@@ -1,6 +1,6 @@
 import { Box, Flex, Spinner } from '@chakra-ui/react';
 
-export default function LoadingSpinner() {
+const LoadingSpinner: React.FC = () => {
   return (
     <Flex height="100%">
       <Box margin="auto">
@@ -8,4 +8,6 @@ export default function LoadingSpinner() {
       </Box>
     </Flex>
   );
-}
+};
+
+export default LoadingSpinner;
