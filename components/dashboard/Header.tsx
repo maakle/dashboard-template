@@ -83,7 +83,7 @@ const Header: React.FC = () => {
                         signOut({ callbackUrl: `${window.location.origin}` });
                       }}
                     >
-                      Logout
+                      Sign Out
                     </MenuItem>
                   </MenuList>
                 </Menu>

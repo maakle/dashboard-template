@@ -21,7 +21,7 @@
     "**/*.ts",
     "**/*.tsx",
     "components/icons/heroicons/settings.js",
-    "utils/constants.tsx="
+    "utils/constants.tsx, "components/dashboard/sidebar/SidebarLink.jsx"="
   ],
   "exclude": ["node_modules"]
 }

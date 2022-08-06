@@ -1,11 +1,14 @@
+import { useMediaQuery } from '@chakra-ui/media-query';
 import { Box, Flex, useColorModeValue, VStack } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { LogoMark, LogoOnDark } from '../../icons';
 import SidebarContainer from './Container';
+import MobileSignOut from './MobileSignOut';
 import PageLinks from './PageLinks';
 
 const Sidebar = (props) => {
   const bgColor = useColorModeValue('white', 'gray.800');
+  const [isSmallScreen] = useMediaQuery('(max-width: 768px)');
 
   return (
     <SidebarContainer bg={bgColor}>
@@ -39,9 +42,12 @@ const Sidebar = (props) => {
         h="calc(100vh - 4rem)"
         p={3}
         overflowY="auto"
+        justifyContent="space-between"
         {...props}
       >
         <PageLinks />
+
+        {isSmallScreen && <MobileSignOut />}
       </VStack>
     </SidebarContainer>
   );
