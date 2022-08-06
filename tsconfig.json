@@ -20,8 +20,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "components/icons/heroicons/settings.js",
-    "utils/constants.tsx, "components/dashboard/sidebar/SidebarLink.jsx"="
+    "components/icons/heroicons/settings.js"
   ],
   "exclude": ["node_modules"]
 }
