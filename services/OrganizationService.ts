@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Session, User } from 'next-auth';
 import prisma from '../lib/prisma';
+import { generateRandomOrganizationSlug } from '../utils/helper';
 import { sendOrganizationInviteEmail } from './EmailService';
 
 export const createDefaultOrganizationForUser = async (
@@ -10,7 +11,10 @@ export const createDefaultOrganizationForUser = async (
 ): Promise<void> => {
   try {
     const organization: Organization = await prisma.organization.create({
-      data: { name: 'Default Organization' },
+      data: {
+        name: 'Default Organization',
+        slug: generateRandomOrganizationSlug(),
+      },
     });
     await prisma.membership.create({
       data: {
@@ -50,11 +54,12 @@ export const editOrganization = async (
   res: NextApiResponse
 ) => {
   try {
-    const { organizationId, name } = req.body;
+    const { organizationId, name, slug } = req.body;
     const newOrganization = await prisma.organization.update({
       where: { id: organizationId },
       data: {
-        name: name,
+        name,
+        slug,
       },
     });
     return res.status(200).json(newOrganization);
