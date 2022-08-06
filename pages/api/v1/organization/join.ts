@@ -1,8 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import NextCors from 'nextjs-cors';
-import { newUserToOrganization } from '../../../../services/OrganizationService';
-
-// This endpoint is for new users to accept an invite to join the company and create a new account.
+import { existingUserToOrganization } from '../../../../services/OrganizationService';
+// This endpoint is for existing users to join an organization
 
 export default async function handler(
   req: NextApiRequest,
@@ -16,7 +15,7 @@ export default async function handler(
 
   switch (req.method) {
     case 'POST': {
-      return newUserToOrganization(req, res);
+      return existingUserToOrganization(req, res);
     }
   }
 }

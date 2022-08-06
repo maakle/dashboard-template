@@ -12,10 +12,19 @@ const sendEmail = async (
   }
 };
 
-export const sendOrganizationInvite = async (
+export const sendOrganizationInviteEmail = async (
   email: string,
-  inviteToken: string
+  inviteToken: string,
+  newUser: boolean
 ): Promise<void> => {
+  let link = '';
+
+  if (newUser) {
+    link = `${process.env.NEXT_PUBLIC_DOMAIN}/auth/accept-invite?inviteToken=${inviteToken}`;
+  } else {
+    link = `${process.env.NEXT_PUBLIC_DOMAIN}/auth/join-organization?inviteToken=${inviteToken}`;
+  }
+
   const msg = {
     to: email,
     from: {
@@ -24,7 +33,7 @@ export const sendOrganizationInvite = async (
     },
     templateId: 'd-2f01c426fda24f36854279d7199c6cfd',
     dynamicTemplateData: {
-      link: `${process.env.NEXT_PUBLIC_DOMAIN}/auth/accept-invite?inviteToken=${inviteToken}`,
+      link: link,
     },
   };
   try {
