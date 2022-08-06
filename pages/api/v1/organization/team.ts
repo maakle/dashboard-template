@@ -16,5 +16,8 @@ export default async function handler(
     case 'POST': {
       return inviteUserToOrganization(req, res);
     }
+
+    default:
+      return res.status(501).end();
   }
 }

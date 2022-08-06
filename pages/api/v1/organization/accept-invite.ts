@@ -18,5 +18,7 @@ export default async function handler(
     case 'POST': {
       return newUserToOrganization(req, res);
     }
+    default:
+      return res.status(501).end();
   }
 }

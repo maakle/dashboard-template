@@ -26,5 +26,8 @@ export default async function handler(
     case 'PATCH': {
       return editOrganization(req, res);
     }
+
+    default:
+      return res.status(501).end();
   }
 }
